@@ -193,7 +193,7 @@ const Portfolio = () => {
                     <span className="text-slate-500 text-xs">Since 2023</span>
                   </div>
                   <div className="text-sm text-slate-300">
-                    Intern Backend Developer at <span className="text-white font-medium">EXhiByte Solutions</span>
+                    Intern Backend Developer at <span className="text-white font-medium">ExhiByte Solutions</span>
                   </div>
                 </div>
               </div>
@@ -431,7 +431,7 @@ const Portfolio = () => {
                     <span className="text-emerald-400 font-bold text-sm tracking-wide">AUG 2025 - PRESENT</span>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1">Intern Backend Developer</h3>
-                  <div className="text-slate-400 font-medium mb-4">EXhiByte Solutions • Surat, Gujarat</div>
+                  <div className="text-slate-400 font-medium mb-4">ExhiByte Solutions • Surat, Gujarat</div>
                   <p className="text-slate-400 text-sm leading-relaxed">
                     Working on backend optimization, database management, and API integration. Gaining hands-on industry experience contributing to scalable, high-performance solutions.
                   </p>
