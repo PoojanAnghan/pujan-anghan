@@ -257,7 +257,7 @@ const Portfolio = () => {
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div> Python
                 </li>
                 <li className="flex items-center gap-2 text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div> Django [DRF]
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div> Django [DRF + Ninja]
                 </li>
                 <li className="flex items-center gap-2 text-slate-300">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div> Flask
