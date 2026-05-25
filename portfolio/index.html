@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Metadata -->
+    <title>Poojan Anghan — Software Engineer Portfolio</title>
+    <meta name="description" content="Personal portfolio of Poojan Anghan, freelance Software Engineer specializing in React.js, Python, Django, FastAPI, and containerized architectures." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- CSS Design Sheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- CDNs: CryptoJS (AES-256), EmailJS, and Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0GeFhR3MGCQE1HZg43nMRgYmRq8CXGxACKOHOPyLYyGs4D1gDMBUq95c52UsQV68CgkeyBxlvODdBkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="bg-obsidian text-slate-200 min-h-screen flex flex-col font-sans overflow-x-hidden">
+    
+    <!-- Cursor Spotlight Highlight -->
+    <div id="cursor-glow" class="hidden md:block pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-emerald-glow opacity-5 blur-[100px] z-50 transition-opacity duration-300"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent" id="header-nav">
+      <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-emerald-950/20 group-hover:scale-105 transition-transform">
+            P
+          </div>
+          <span class="font-bold text-xl tracking-tight text-white">
+            Poojan<span class="text-emerald-400">.Dev</span>
+          </span>
+        </a>
+        
+        <!-- Desktop Navigation links -->
+        <nav class="hidden md:flex items-center gap-8" id="nav-links">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#work" class="nav-link">Work</a>
+          <a href="#blog" class="nav-link">Blog</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="px-5 py-2 rounded-lg bg-slate-900 border border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-400/5 text-emerald-400 font-medium text-sm transition-all duration-300">Contact Me</a>
+        </nav>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="md:hidden p-2 text-slate-400 hover:text-white transition-colors" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Drawer Overlay -->
+      <div class="md:hidden absolute w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800 shadow-xl overflow-hidden transition-all duration-300 max-h-0 opacity-0" id="mobile-drawer">
+        <div class="py-4 px-6 flex flex-col gap-4">
+          <a href="#home" class="mobile-nav-link">Home</a>
+          <a href="#work" class="mobile-nav-link">Work</a>
+          <a href="#blog" class="mobile-nav-link">Blog</a>
+          <a href="#about" class="mobile-nav-link">About</a>
+          <a href="#contact" class="mobile-nav-link text-emerald-400 font-bold">Contact Me</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main View Routing Outlet -->
+    <main class="flex-grow pt-20" id="app-viewport">
+      <!-- Dynamic Pages will be rendered here by js/renderer.js -->
+      <div class="container mx-auto px-6 py-20 flex items-center justify-center">
+        <!-- Loader Skeleton -->
+        <div class="w-full max-w-4xl space-y-8 animate-pulse">
+          <div class="h-10 bg-slate-800 rounded-lg w-1/3"></div>
+          <div class="h-6 bg-slate-800 rounded-lg w-2/3"></div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="h-64 bg-slate-800 rounded-xl"></div>
+            <div class="h-64 bg-slate-800 rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="py-12 bg-slate-950 border-t border-slate-900 text-center text-slate-500 text-sm">
+      <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <p>&copy; 2026 Poojan Anghan. All rights reserved.</p>
+        <div class="flex gap-6 text-slate-400 text-base" id="footer-socials">
+          <!-- Populated from contact.json on init -->
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript ES6 Engine Modules -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

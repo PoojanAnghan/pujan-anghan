@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "LogiTrack — Enterprise Fleet Management ERP",
+    "slug": "logitrack-fleet-management",
+    "thumbnail": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&fit=crop",
+    "tags": ["React", "Python", "FastAPI", "PostgreSQL"],
+    "summary": "An all-in-one fleet telemetry and tracking dashboard built for logistics operators managing over 500 active transit routes.",
+    "problem": "Legacy spreadsheets and high API response times for vehicle telemetry led to coordination lag, causing average logistics delays of 14% across transit lanes.",
+    "process": "We refactored telemetry data ingestion using high-throughput FastAPI endpoints. Developed a dynamic, responsive React interface that streams transit updates and optimizes path schedules.",
+    "solution": "Built a modular web ERP utilizing asynchronous API pooling, structured Postgres database schemas, and optimized geolocation calculations to render instantaneous routing maps.",
+    "outcome": "Improved real-time shipment monitoring accuracy to 99% and slashed delivery coordinate mapping latency by 74%.",
+    "metrics": ["99% Live Telemetry Accuracy", "74% Latency Reduction", "500+ Active Routes Managed"],
+    "role": "Lead Software Engineer",
+    "year": "2025",
+    "liveUrl": "https://github.com/PoojanAnghan",
+    "githubUrl": "https://github.com/PoojanAnghan",
+    "images": [
+      "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=800&fit=crop",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&fit=crop"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "MedSync — Patient Booking & Clinical Portal",
+    "slug": "medsync-clinical-portal",
+    "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&fit=crop",
+    "tags": ["React", "Django", "MySQL", "Docker"],
+    "summary": "A secure patient booking engine and records organizer designed for multi-specialty clinical operations.",
+    "problem": "Patient scheduling conflicts, manual record entry, and lack of token authentication resulted in slow front-office flows and data vulnerability.",
+    "process": "Designed secure JWT validation schemes and created a modular React booking calendar. Shipped a containerized Django server connected to optimized MySQL indexing boards.",
+    "solution": "Successfully deployed an enterprise-grade medical portal offering secure EHR storage, real-time doctor availability calendars, and instant automated appointment confirmations.",
+    "outcome": "Secured clinical operations with HIPAA-compliant standards, decreased scheduling conflicts to 0%, and reduced front-desk administrative times by 40%.",
+    "metrics": ["0% Scheduling Conflicts", "40% Administrative Time Saved", "JWT Secure Compliance"],
+    "role": "Full Stack Backend Engineer",
+    "year": "2024",
+    "liveUrl": "https://github.com/PoojanAnghan",
+    "githubUrl": "https://github.com/PoojanAnghan",
+    "images": [
+      "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&fit=crop",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&fit=crop"
+    ]
+  }
+]

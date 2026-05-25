@@ -1,0 +1,48 @@
+{
+  "name": "Poojan Anghan",
+  "title": "Software Engineer",
+  "tagline": "Building Scalable Web Systems with React.js & Python",
+  "bio": "I partner with founders, agile product teams, and companies to ship production-grade full-stack solutions. With deep expertise in React.js and Python (Django, FastAPI, Flask), I take projects from initial data schema design to fully containerized cloud deployments.",
+  "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop",
+  "skills": [
+    {
+      "category": "Frontend Engine",
+      "items": ["React.js", "ES6 JavaScript", "Vanilla CSS", "Tailwind CSS"]
+    },
+    {
+      "category": "Backend Engineering",
+      "items": ["Python", "Django REST Framework", "FastAPI", "Flask", "Node.js"]
+    },
+    {
+      "category": "Databases & DevOps",
+      "items": ["PostgreSQL", "MySQL", "MongoDB", "Docker", "Git / GitHub", "Vercel"]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "ExhiByte Solution",
+      "period": "Aug 2025 - Present",
+      "desc": "Delivering enterprise-scale software solutions using React.js and Python. Formulated microservice patterns, designed optimized SQL query layouts, and shipped fleet-management booking platforms."
+    },
+    {
+      "role": "Python Developer",
+      "company": "Tryon Infotech",
+      "period": "July 2023 - July 2025",
+      "desc": "Developed Django/Flask backend architectures. Integrated secure payment gateways, established multi-tenant database models, and automated manual operational structures."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Computer Application (IT)",
+      "school": "Veer Narmad South Gujarat University",
+      "year": "2023 - 2026"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/PoojanAnghan",
+    "linkedin": "https://www.linkedin.com/in/poojan-anghan-447073340",
+    "twitter": "https://twitter.com"
+  },
+  "resume": "https://PoojanAnghan.github.io/pujan-anghan/Profile.pdf"
+}

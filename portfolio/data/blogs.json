@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "Mastering Async Closure State Updates in React 18 & 19",
+    "slug": "mastering-async-react-closures",
+    "date": "May 24, 2026",
+    "readTime": "5 min read",
+    "tags": ["React", "JavaScript", "Architecture"],
+    "coverImage": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&fit=crop",
+    "excerpt": "A deep dive into how asynchronous state updates inside timers and event listeners close over mutable variables by reference, and how to fix them using block-scoped constants.",
+    "content": "<p>In modern React, state updates are batched asynchronously to maximize rendering performance. While this optimization works perfectly for standard user interactions, it introduces subtle and deceptive closure bugs when paired with timers (<code>setInterval</code> or <code>setTimeout</code>) or global event listeners.</p><h3>The Closure Bug</h3><p>When you define an interval inside a <code>useEffect</code> hook, the callback closes over the lexical scope of that effect hook. If you reference a block-scoped mutable index counter (like a <code>let currentIdx = 0</code>) directly within your state setter callback:</p><pre><code>setLogs((prev) => [...prev, fullLogs[currentIdx]]);\ncurrentIdx++;</code></pre><p>The setter callback <code>(prev) => ...</code> captures <code>currentIdx</code> by reference. When React eventually flushes the batched state updates, the loop has already incremented <code>currentIdx</code> past the array boundaries, producing <code>undefined</code> values and crashing the application.</p><h3>The Immutable Scoping Solution</h3><p>To secure state updates from closure reference drift, you must capture the array element inside an immutable <code>const</code> binding at the exact tick the update is queued:</p><pre><code>const logToAppend = fullLogs[currentIdx];\nif (logToAppend !== undefined) {\n  setLogs((prev) => [...prev, logToAppend]);\n}\ncurrentIdx++;</code></pre><p>Because <code>logToAppend</code> is declared fresh inside each interval block scope, the React state callback closes over that unique immutable value, preserving state consistency perfectly!</p>"
+  },
+  {
+    "id": 2,
+    "title": "Building Production-Ready REST APIs with Django & FastAPI",
+    "slug": "production-apis-django-fastapi",
+    "date": "April 18, 2026",
+    "readTime": "6 min read",
+    "tags": ["Python", "Django", "FastAPI", "DevOps"],
+    "coverImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&fit=crop",
+    "excerpt": "How to choose between the robustness of Django REST Framework and the lightning speed of FastAPI, complete with dockerization tips.",
+    "content": "<p>Python is an exceptional language for modern backend services, offering two world-class frameworks for API development: <strong>Django (DRF)</strong> and <strong>FastAPI</strong>. Choosing the right one for your product depends on your team's administrative structure and performance targets.</p><h3>Django REST Framework: The Batteries-Included Titan</h3><p>For data-intensive SaaS applications, ERP modules, and corporate dashboards, Django REST Framework is unmatched. Its built-in ORM, secure admin portals, migration managers, and automated authentication layers allow a single engineer to build complete secure web portals autonomously.</p><h3>FastAPI: Lightning Speed and Modern Typings</h3><p>When engineering high-throughput microservices, real-time geolocation telemetry pipelines, or lightweight serverless functions, FastAPI is the premier choice. Underpinned by Starlette and Pydantic, it provides asynchronous loop handling, native type-validation, and instant automatic OpenAPI documentation.</p><h3>Dockerization for Seamless Deployments</h3><p>No matter which framework you select, running inside a standardized Docker container is essential for remote engineering teams:</p><pre><code>FROM python:3.11-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nCMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]</code></pre><p>Using containerized builds ensures your APIs execute identical runtime structures from local testing coordinates all the way to cloud production clusters.</p>"
+  }
+]
