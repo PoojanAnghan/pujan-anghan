@@ -44,47 +44,76 @@ const Home = () => {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl lg:text-left flex flex-col justify-center animate-fade-in-up">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Availability badge */}
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium backdrop-blur-sm w-fit">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              Available for freelance projects
+            {/* Left: Text Content */}
+            <div className="lg:text-left flex flex-col justify-center animate-fade-in-up order-2 lg:order-1">
+              
+              {/* Availability badge */}
+              <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium backdrop-blur-sm w-fit">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                Available for freelance projects
+              </div>
+
+              {/* Headline */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+                I build web apps that help <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">businesses grow online.</span>
+              </h1>
+
+              {/* Subheadline */}
+              <p className="text-lg sm:text-xl text-slate-450 mb-10 leading-relaxed max-w-2xl">
+                Full-stack developer specializing in React, Django & FastAPI — I take your idea from design to deployment, fast and clean.
+              </p>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-start gap-4 mb-10 w-full sm:w-auto">
+                <Link
+                  to="/quote"
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-all shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/40 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  Get a Quote
+                  <ChevronRight size={18} />
+                </Link>
+                <Link
+                  to="/experience"
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  View My Work
+                </Link>
+              </div>
+
+              {/* Stack pills */}
+              <div className="flex gap-3 flex-wrap items-center">
+                <span className="text-slate-500 text-sm font-medium">Stack:</span>
+                {["React", "Django", "FastAPI", "TypeScript", "PostgreSQL", "Tailwind CSS", "Docker"].map(t => (
+                  <span key={t} className="text-slate-400 text-xs border border-slate-800 bg-slate-900/40 backdrop-blur-sm rounded-md px-3 py-1 font-medium hover:border-emerald-500/35 transition-colors">{t}</span>
+                ))}
+              </div>
+
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-              I build web apps that help <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">businesses grow online.</span>
-            </h1>
+            {/* Right: Profile Photo */}
+            <div className="flex justify-center lg:justify-end order-1 lg:order-2 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <div className="relative">
+                {/* Glow effect behind photo */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent rounded-full blur-2xl"></div>
+                
+                {/* Decorative ring */}
+                <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-600 rounded-full opacity-20"></div>
+                
+                {/* Photo container */}
+                <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-2xl shadow-emerald-900/20">
+                  <img
+                    src={`${import.meta.env.BASE_URL}profile.jpg`}
+                    alt="Poojan Anghan - Full-Stack Web Developer"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
 
-            {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-slate-450 mb-10 leading-relaxed max-w-2xl">
-              Full-stack developer specializing in React, Django & FastAPI — I take your idea from design to deployment, fast and clean.
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-start gap-4 mb-10 w-full sm:w-auto">
-              <Link
-                to="/quote"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-all shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/40 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Get a Quote
-                <ChevronRight size={18} />
-              </Link>
-              <Link
-                to="/experience"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                View My Work
-              </Link>
-            </div>
-
-            {/* Stack pills */}
-            <div className="flex gap-3 flex-wrap items-center">
-              <span className="text-slate-500 text-sm font-medium">Stack:</span>
-              {["React", "Django", "FastAPI", "TypeScript", "PostgreSQL", "Tailwind CSS", "Docker"].map(t => (
-                <span key={t} className="text-slate-400 text-xs border border-slate-800 bg-slate-900/40 backdrop-blur-sm rounded-md px-3 py-1 font-medium hover:border-emerald-500/35 transition-colors">{t}</span>
-              ))}
+                {/* Floating accent dots */}
+                <div className="absolute -top-2 -right-2 w-5 h-5 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-teal-400 rounded-full animate-pulse shadow-lg shadow-teal-400/50" style={{ animationDelay: '1s' }}></div>
+              </div>
             </div>
 
           </div>

@@ -98,7 +98,7 @@ const About = () => {
               <h3 className="text-xl font-bold text-white mb-1">Bachelor of Computer Application (IT)</h3>
               <div className="text-slate-400 font-medium mb-2">Veer Narmad South Gujarat University • Surat</div>
               <div className="inline-block px-3 py-1 rounded bg-slate-800 text-xs text-slate-300 border border-slate-700">
-                CGPA: 7.85 (5th Sem)
+                CGPA: 7.85
               </div>
             </div>
 

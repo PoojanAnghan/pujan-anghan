@@ -176,7 +176,7 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                {/* 8. Footer — "Live demo" and "Code" buttons */}
+                {/* 8. Footer — "Live demo" and "Code" buttons
                 <div className="flex items-center gap-3 pt-2">
                   {project.demoUrl && (
                     <a
@@ -200,7 +200,7 @@ const ProjectsSection = () => {
                       Code
                     </a>
                   )}
-                </div>
+                </div> */}
               </div>
 
             </div>
