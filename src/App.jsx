@@ -4,10 +4,13 @@ import { Menu, X } from 'lucide-react';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './pages/Services';
+import Services from './components/ServicesSection';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
+import ProjectsSection from './components/ProjectsSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import GetAQuote from './pages/GetAQuote';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,8 +79,10 @@ const Portfolio = () => {
             <div className="hidden md:flex items-center gap-8">
               <NavigationLink to="/" label="Home" />
               <NavigationLink to="/about" label="About" />
+              <NavigationLink to="/projects" label="Projects" />
               <NavigationLink to="/services" label="Services" />
               <NavigationLink to="/experience" label="Experience" />
+              <NavigationLink to="/testimonials" label="Testimonials" />
               <Link
                 to="/contact"
                 className="px-5 py-2.5 rounded-lg bg-slate-800 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-500/60 transition-all duration-300 font-medium text-sm cursor-pointer"
@@ -104,8 +109,10 @@ const Portfolio = () => {
             <div className="py-2">
               <MobileNavigationLink to="/" label="Home" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/about" label="About" onClick={() => setIsMenuOpen(false)} />
+              <MobileNavigationLink to="/projects" label="Projects" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/services" label="Services" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/experience" label="Experience" onClick={() => setIsMenuOpen(false)} />
+              <MobileNavigationLink to="/testimonials" label="Testimonials" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/contact" label="Contact" onClick={() => setIsMenuOpen(false)} />
             </div>
           </div>
@@ -116,9 +123,12 @@ const Portfolio = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<ProjectsSection />} />
             <Route path="/services" element={<Services />} />
             <Route path="/experience" element={<Experience />} />
+            <Route path="/testimonials" element={<TestimonialsSection />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/quote" element={<GetAQuote />} />
           </Routes>
         </main>
 
