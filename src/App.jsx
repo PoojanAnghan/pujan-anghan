@@ -68,7 +68,7 @@ const Portfolio = () => {
           <div className="container mx-auto px-6 h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 cursor-pointer">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-900/20">
-                P
+                PA
               </div>
               <span className="font-bold text-xl tracking-tight text-white hidden sm:block">
                 Poojan<span className="text-emerald-400">.Dev</span>
