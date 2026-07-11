@@ -57,12 +57,13 @@ const Home = () => {
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-                I build web apps that help <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">businesses grow online.</span>
+                Hi i'm <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Poojan Anghan</span>
               </h1>
 
               {/* Subheadline */}
               <p className="text-lg sm:text-xl text-slate-450 mb-10 leading-relaxed max-w-2xl">
-                Full-stack developer specializing in React, Django & FastAPI — I take your idea from design to deployment, fast and clean.
+                I enable companies to launch high-performance digital solutions spanning web and mobile, combining clean architecture, transparent updates, and on-time project execution.
               </p>
               
               {/* CTA Buttons */}
