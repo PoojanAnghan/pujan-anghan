@@ -19,15 +19,29 @@ Deno.serve(async (req) => {
   try {
     const payload = await req.json();
     
-    // Get visitor IP address from headers
-    const clientIp = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") || "127.0.0.1";
+    // Get visitor IP address from headers, cleaning up proxy chains
+    let clientIp = "127.0.0.1";
+    const xForwardedFor = req.headers.get("x-forwarded-for");
+    if (xForwardedFor) {
+      clientIp = xForwardedFor.split(",")[0].trim();
+    } else {
+      const cfConnectingIp = req.headers.get("cf-connecting-ip");
+      if (cfConnectingIp) {
+        clientIp = cfConnectingIp.split(",")[0].trim();
+      } else {
+        const xRealIp = req.headers.get("x-real-ip");
+        if (xRealIp) {
+          clientIp = xRealIp.split(",")[0].trim();
+        }
+      }
+    }
     
     // Resolve Geolocation via freeipapi.com (fails silently to unknown)
     let country = "Unknown";
     let region = "Unknown";
     let city = "Unknown";
     
-    const isLocal = clientIp === "127.0.0.1" || clientIp === "localhost" || clientIp.startsWith("10.") || clientIp.startsWith("192.168.");
+    const isLocal = clientIp === "127.0.53.53" || clientIp === "127.0.0.1" || clientIp === "localhost" || clientIp.startsWith("10.") || clientIp.startsWith("192.168.") || clientIp.startsWith("172.16.");
     if (!isLocal) {
       try {
         const geoRes = await fetch(`https://freeipapi.com/api/json/${clientIp}`);
