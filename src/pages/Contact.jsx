@@ -1,16 +1,22 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Github, Linkedin } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-slate-950 to-slate-900 flex-grow flex items-center">
+      <SEO
+        title="Contact Poojan Anghan | Hire a Freelance React & Python Engineer"
+        description="Get in touch with Poojan Anghan for remote full-stack contract work, freelance projects, or consulting inquiries."
+        keywords="Contact Poojan Anghan, Hire React Developer, Hire Python Developer, Remote Software Engineer"
+      />
       <div className="container mx-auto px-6 w-full">
         <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
           {/* Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
           <div className="text-center mb-12 relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Let's Work Together</h2>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Let's Work Together</h1>
             <p className="text-slate-400 text-sm sm:text-base">
               I'm currently available for freelance projects or full-time opportunities.
             </p>

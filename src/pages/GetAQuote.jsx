@@ -1,5 +1,6 @@
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
+import SEO from "../components/SEO"
 
 const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -143,6 +144,11 @@ export default function GetAQuote() {
   if (success) {
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center px-6">
+        <SEO
+          title="Brief Received! | Poojan Anghan"
+          description="Your project brief has been successfully received by Poojan Anghan. I'll review it and get back to you shortly."
+          keywords="Brief received, Project Submitted, Poojan Anghan"
+        />
         <div className="text-center max-w-md">
           <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30
             flex items-center justify-center mx-auto mb-6 text-3xl">
@@ -167,6 +173,11 @@ export default function GetAQuote() {
 
   return (
     <div className="min-h-screen bg-slate-900 px-6 py-16">
+      <SEO
+        title="Get a Project Quote | Poojan Anghan - Software Engineer"
+        description="Submit your project brief to receive a customized quote and consultation for your custom web app or database API project."
+        keywords="Get a Quote, Project Estimate, Freelance Developer Pricing, Poojan Anghan"
+      />
       <div className="max-w-5xl mx-auto">
 
         {/* Page heading */}

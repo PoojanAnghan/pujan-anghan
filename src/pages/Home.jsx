@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const [terminalLogs, setTerminalLogs] = useState([]);
@@ -37,6 +38,11 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Poojan Anghan — Software Engineer | React.js & Python Specialist"
+        description="Portfolio of Poojan Anghan, a freelance Software Engineer specializing in React.js, Python (Django, FastAPI, Flask), and REST API design. Shipped 10+ scalable remote projects."
+        keywords="Poojan Anghan, Software Engineer, React Developer, Python Developer, Django Developer, FastAPI Developer, Freelance Developer Surat"
+      />
       {/* 1. Hero Section (Above the fold) */}
       <section id="home" className="relative min-h-[calc(100vh-80px)] flex items-center py-20 overflow-hidden">
         {/* Background Elements */}

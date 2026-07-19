@@ -1,13 +1,19 @@
 import React from 'react';
 import { Briefcase } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Experience = () => {
   return (
     <section id="experience" className="py-24">
+      <SEO
+        title="Professional Experience | Poojan Anghan"
+        description="Explore Poojan Anghan's professional career as a Software Engineer, spanning full-stack React and Python development."
+        keywords="Poojan Anghan Career, Experience, Software Engineer Resume, Python Developer Surat"
+      />
       <div className="container mx-auto px-6 max-w-4xl">
         <div className="flex items-center gap-3 mb-8">
           <Briefcase className="text-emerald-400" size={28} />
-          <h2 className="text-3xl font-bold text-white">Experience</h2>
+          <h1 className="text-3xl font-bold text-white">Experience</h1>
         </div>
 
         <div className="relative pl-8 border-l border-slate-800 space-y-12">

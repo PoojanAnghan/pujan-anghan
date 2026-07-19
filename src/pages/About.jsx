@@ -1,9 +1,15 @@
 import React from 'react';
 import { User, Cpu, Mail, GraduationCap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const About = () => {
   return (
     <>
+      <SEO
+        title="About Poojan Anghan | Full-Stack Software Engineer"
+        description="Learn about Poojan Anghan's background as a Full-Stack Software Engineer. Specializing in React.js and Python (Django, FastAPI, Flask) remote builds."
+        keywords="Poojan Anghan, Software Engineer, About, React Developer, Python Developer, ExhiByte Solution"
+      />
       {/* About Section */}
       <section id="about" className="py-24 bg-slate-900/50">
         <div className="container mx-auto px-6">
@@ -12,9 +18,9 @@ const About = () => {
               <User size={20} />
               <span>ABOUT ME</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Software Engineer for Remote Product Teams
-            </h2>
+            </h1>
             <div className="space-y-6 text-slate-400 leading-relaxed text-lg mb-10">
               <p>
                 I work with founders, agencies, and remote product teams to deliver scalable, high-performance web systems with clean architecture and long-term stability.

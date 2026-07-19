@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from './SEO';
 
 const testimonialsData = [
   {
@@ -37,14 +38,19 @@ const socialProofData = [
 const TestimonialsSection = () => {
   return (
     <section className="py-20 bg-slate-950 text-white border-t border-slate-900">
+      <SEO
+        title="Testimonials & Client Feedback | Poojan Anghan"
+        description="Read client testimonials and recommendations about Poojan Anghan's software engineering services, delivery speed, and clean code quality."
+        keywords="Client Reviews, Testimonials, Software Engineer Reviews, Freelance Client Feedback"
+      />
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-16">
           <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">
             Testimonials
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
             What Clients Say
-          </h2>
+          </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
             Feedback from remote engineering contracts, full-stack deliveries, and custom software builds.
           </p>

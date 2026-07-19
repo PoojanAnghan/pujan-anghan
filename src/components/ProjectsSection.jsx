@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Globe, Cpu, Settings } from 'lucide-react';
+import SEO from './SEO';
 
 const projectsData = [
   {
@@ -74,14 +75,19 @@ const ProjectsSection = () => {
 
   return (
     <section className="py-20 bg-slate-950 text-white border-t border-slate-900">
+      <SEO
+        title="Projects by Poojan Anghan | Software Engineer Portfolio"
+        description="Explore software engineering projects and case studies built by Poojan Anghan, featuring custom enterprise ERPs, cryptographic sharing APIs, and backend automation."
+        keywords="Software Engineering Projects, Case Studies, React Portfolio, Python Backend Projects, ERP Development"
+      />
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-12">
           <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">
             Selected Work
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
             Projects & Case Studies
-          </h2>
+          </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
             Clean code, scalable backends, and robust frontend logic delivered remotely to global clients.
           </p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, Cpu, LayoutDashboard, Bug, ArrowRight, Check } from 'lucide-react';
+import SEO from './SEO';
 
 const servicesData = [
   {
@@ -71,14 +72,19 @@ const ServicesSection = () => {
 
   return (
     <section className="py-20 bg-slate-950 text-white border-t border-slate-900">
+      <SEO
+        title="Services & Pricing | Poojan Anghan - Software Engineer"
+        description="View freelance services, contract engagement models, and transparent starting pricing for custom React, Django, and FastAPI projects."
+        keywords="Freelance Services, React App Cost, API Development Price, Custom Dashboard Developer"
+      />
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-16">
           <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">
             Services
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
             Freelance Services & Deliverables
-          </h2>
+          </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
             Professional development solutions focused on business outcomes, remote delivery, and reliable execution.
           </p>
