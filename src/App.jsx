@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { HashRouter, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
+import { Menu, X, Loader2 } from 'lucide-react';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -11,6 +11,8 @@ import ScrollToTop from './components/ScrollToTop';
 import ProjectsSection from './components/ProjectsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import GetAQuote from './pages/GetAQuote';
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+import { trackPageView } from './utils/analytics';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,9 +55,18 @@ const Portfolio = () => {
     </NavLink>
   );
 
+  const AnalyticsTracker = () => {
+    const location = useLocation();
+    useEffect(() => {
+      trackPageView(location.pathname);
+    }, [location]);
+    return null;
+  };
+
   return (
     <HashRouter>
       <ScrollToTop />
+      <AnalyticsTracker />
       <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-emerald-500/30 selection:text-emerald-200 flex flex-col">
         {/* Navigation */}
         <nav
@@ -129,6 +140,18 @@ const Portfolio = () => {
             <Route path="/testimonials" element={<TestimonialsSection />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/quote" element={<GetAQuote />} />
+            <Route 
+              path="/admin" 
+              element={
+                <Suspense fallback={
+                  <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                  </div>
+                }>
+                  <AdminDashboard />
+                </Suspense>
+              } 
+            />
           </Routes>
         </main>
 

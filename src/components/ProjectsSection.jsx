@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Globe, Cpu, Settings } from 'lucide-react';
 import SEO from './SEO';
+import { trackEvent } from '../utils/analytics';
 
 const projectsData = [
   {
@@ -116,7 +117,8 @@ const ProjectsSection = () => {
             <div
               key={project.id}
               data-tags={project.category}
-              className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-emerald-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between h-full group"
+              onClick={() => trackEvent('project_click', { project: project.title })}
+              className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-emerald-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between h-full group cursor-pointer"
             >
               <div>
                 {/* 1. Icon + category tag (top row) */}

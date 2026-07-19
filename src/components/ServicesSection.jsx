@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, Cpu, LayoutDashboard, Bug, ArrowRight, Check } from 'lucide-react';
 import SEO from './SEO';
+import { trackEvent } from '../utils/analytics';
 
 const servicesData = [
   {
@@ -150,6 +151,7 @@ const ServicesSection = () => {
                 {/* 6. CTA button */}
                 <Link
                   to="/quote"
+                  onClick={() => trackEvent('quote_click', { source: 'services_pricing', service: service.title })}
                   className={`w-full py-3.5 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                     service.isPopular
                       ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/20"

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import { trackEvent } from '../utils/analytics';
 
 const Home = () => {
   const [terminalLogs, setTerminalLogs] = useState([]);
@@ -76,6 +77,7 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row items-center justify-start gap-4 mb-10 w-full sm:w-auto">
                 <Link
                   to="/quote"
+                  onClick={() => trackEvent('quote_click', { source: 'hero' })}
                   className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-all shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/40 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Get a Quote
@@ -83,6 +85,7 @@ const Home = () => {
                 </Link>
                 <Link
                   to="/experience"
+                  onClick={() => trackEvent('project_click', { source: 'hero' })}
                   className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   View My Work

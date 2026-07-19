@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SEO = ({ title, description, keywords }) => {
+const SEO = ({ title, description, keywords, noindex }) => {
   useEffect(() => {
     if (title) {
       document.title = title;
@@ -41,6 +41,13 @@ const SEO = ({ title, description, keywords }) => {
     updateProperty('twitter:title', title);
     updateProperty('twitter:description', description);
 
+    // Robots indexing rules
+    if (noindex || window.location.hash.startsWith('#/admin') || window.location.pathname.startsWith('/admin')) {
+      updateMeta('robots', 'noindex, nofollow');
+    } else {
+      updateMeta('robots', 'index, follow');
+    }
+
     // Update canonical link dynamically per page route (hash-aware)
     let canonical = document.querySelector('link[rel="canonical"]');
     const currentUrl = window.location.href.split('#')[0] + (window.location.hash || '');
@@ -52,7 +59,7 @@ const SEO = ({ title, description, keywords }) => {
       canonical.href = currentUrl;
       document.head.appendChild(canonical);
     }
-  }, [title, description, keywords]);
+  }, [title, description, keywords, noindex]);
 
   return null;
 };

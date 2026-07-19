@@ -1,6 +1,7 @@
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import SEO from "../components/SEO"
+import { trackEvent } from "../utils/analytics"
 
 const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -99,6 +100,7 @@ export default function GetAQuote() {
           console.error("Auto-reply transmission failed:", autoReplyErr);
         }
       }
+      trackEvent('quote_submit', { service: form.service, budget: form.budget });
       setSuccess(true)
       setForm(INITIAL_FORM)
     } catch (err) {
