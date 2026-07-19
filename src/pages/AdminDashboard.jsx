@@ -19,9 +19,32 @@ const COUNTRY_COORDINATES = {
   'Singapore': { x: 145, y: 58 },
   'United Arab Emirates': { x: 122, y: 45 },
   'Spain': { x: 95, y: 36 },
-  'Italy': { x: 102, y: 35 },
-  'Canada': { x: 42, y: 24 }
+  'Italy': { x: 102, y: 35 }
 };
+
+// 40x20 Dot Matrix World Map grid
+const MAP_GRID = [
+  "........................................",
+  "........................................",
+  "........xx..............................",
+  "...xxxx.xxx........xxxx.xxxxx.xxxx......",
+  "..xxxxxxxxxx......xxxxxxxxxxxxxxxxx.....",
+  ".xxxxxxxxxxxx.....xxxxxxxxxxxxxxxxxx.x..",
+  "..xxxxxxxxxxx......xxxxxxxxxxxxxxxxx.xx.",
+  "....xxxxxxx........xxxxxxxxxxxxxx.x.....",
+  ".....xxxxxx.........xxxxxxxxxxx.........",
+  ".....xxxxx..........xxxxxxxx.x..........",
+  "......xxxx...........xxxxxx.............",
+  "......xxx.............xxxx..............",
+  "......xx..............xxx...............",
+  "......x...............x.................",
+  "..................................xxx...",
+  ".................................xxxxx..",
+  "..................................xxx...",
+  "........................................",
+  "........................................",
+  "........................................"
+];
 
 // Fallback random coordinate generator based on country name seed
 const getCountryCoords = (country) => {
@@ -513,22 +536,33 @@ const AdminDashboard = () => {
                     <h3 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4">Global Reach</h3>
                     <div className="relative flex-grow flex items-center justify-center">
                       {/* World SVG Outline Placeholder grid background */}
-                      <svg viewBox="0 0 200 100" className="w-full h-auto text-slate-800 opacity-25 select-none">
+                      <svg viewBox="0 0 200 100" className="w-full h-auto text-slate-800/40 select-none">
                         {/* High-tech grid line overlays */}
-                        <line x1="0" y1="20" x2="200" y2="20" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="0" y1="40" x2="200" y2="40" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="0" y1="60" x2="200" y2="60" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="0" y1="80" x2="200" y2="80" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="100" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
-                        <line x1="150" y1="0" x2="150" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="0" y1="20" x2="200" y2="20" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="0" y1="40" x2="200" y2="40" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="0" y1="60" x2="200" y2="60" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="0" y1="80" x2="200" y2="80" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="100" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
+                        <line x1="150" y1="0" x2="150" y2="100" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1,2" />
 
-                        {/* Highly-stylized continental path vectors */}
-                        <path d="M 15 20 L 65 20 L 55 45 L 40 45 L 35 55 L 28 50 Z" fill="currentColor" opacity="0.6" /> {/* N. America */}
-                        <path d="M 45 55 L 65 55 L 55 85 L 48 90 L 45 70 Z" fill="currentColor" opacity="0.6" /> {/* S. America */}
-                        <path d="M 80 18 L 170 18 L 175 50 L 150 55 L 140 65 L 130 55 L 115 50 L 85 45 Z" fill="currentColor" opacity="0.6" /> {/* Eurasia */}
-                        <path d="M 80 45 L 110 45 L 115 55 L 95 80 L 85 75 L 78 55 Z" fill="currentColor" opacity="0.6" /> {/* Africa */}
-                        <path d="M 155 70 L 180 70 L 175 85 L 160 85 Z" fill="currentColor" opacity="0.6" /> {/* Australia */}
+                        {/* Dotted continental map */}
+                        {MAP_GRID.map((row, rIdx) => 
+                          row.split('').map((char, cIdx) => {
+                            if (char !== 'x') return null;
+                            const cx = cIdx * 5 + 2.5;
+                            const cy = rIdx * 5 + 2.5;
+                            return (
+                              <circle
+                                key={`${rIdx}-${cIdx}`}
+                                cx={cx}
+                                cy={cy}
+                                r="0.75"
+                                className="fill-slate-800"
+                              />
+                            );
+                          })
+                        )}
                       </svg>
                       {/* Plotting points */}
                       <div className="absolute inset-0">
