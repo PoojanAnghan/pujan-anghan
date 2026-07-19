@@ -513,14 +513,22 @@ const AdminDashboard = () => {
                     <h3 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4">Global Reach</h3>
                     <div className="relative flex-grow flex items-center justify-center">
                       {/* World SVG Outline Placeholder grid background */}
-                      <svg viewBox="0 0 200 100" className="w-full h-auto text-slate-800 opacity-30 select-none">
-                        {/* Simplified grid mimicking world map continents layout */}
-                        <rect x="15" y="15" width="55" height="40" rx="4" fill="currentColor" /> {/* N. America */}
-                        <rect x="45" y="55" width="30" height="35" rx="4" fill="currentColor" /> {/* S. America */}
-                        <rect x="85" y="15" width="40" height="25" rx="4" fill="currentColor" /> {/* Europe */}
-                        <rect x="80" y="40" width="35" height="35" rx="4" fill="currentColor" /> {/* Africa */}
-                        <rect x="120" y="18" width="60" height="40" rx="4" fill="currentColor" /> {/* Asia */}
-                        <rect x="155" y="65" width="25" height="25" rx="4" fill="currentColor" /> {/* Australia */}
+                      <svg viewBox="0 0 200 100" className="w-full h-auto text-slate-800 opacity-25 select-none">
+                        {/* High-tech grid line overlays */}
+                        <line x1="0" y1="20" x2="200" y2="20" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="0" y1="40" x2="200" y2="40" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="0" y1="60" x2="200" y2="60" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="0" y1="80" x2="200" y2="80" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="100" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+                        <line x1="150" y1="0" x2="150" y2="100" stroke="currentColor" strokeWidth="0.25" strokeDasharray="2,2" />
+
+                        {/* Highly-stylized continental path vectors */}
+                        <path d="M 15 20 L 65 20 L 55 45 L 40 45 L 35 55 L 28 50 Z" fill="currentColor" opacity="0.6" /> {/* N. America */}
+                        <path d="M 45 55 L 65 55 L 55 85 L 48 90 L 45 70 Z" fill="currentColor" opacity="0.6" /> {/* S. America */}
+                        <path d="M 80 18 L 170 18 L 175 50 L 150 55 L 140 65 L 130 55 L 115 50 L 85 45 Z" fill="currentColor" opacity="0.6" /> {/* Eurasia */}
+                        <path d="M 80 45 L 110 45 L 115 55 L 95 80 L 85 75 L 78 55 Z" fill="currentColor" opacity="0.6" /> {/* Africa */}
+                        <path d="M 155 70 L 180 70 L 175 85 L 160 85 Z" fill="currentColor" opacity="0.6" /> {/* Australia */}
                       </svg>
                       {/* Plotting points */}
                       <div className="absolute inset-0">
@@ -529,20 +537,20 @@ const AdminDashboard = () => {
                             if (loc.country === 'Unknown') return null;
                             const coords = getCountryCoords(loc.country);
                             const maxCount = Math.max(...stats.topLocations.map(l => l.count), 1);
-                            const dotSize = Math.max(2, Math.min(8, (loc.count / maxCount) * 8));
+                            const dotSize = Math.max(2, Math.min(6, (loc.count / maxCount) * 6));
                             return (
                               <g key={loc.country} className="group cursor-pointer">
                                 <circle
                                   cx={coords.x}
                                   cy={coords.y}
-                                  r={dotSize + 2}
-                                  className="fill-emerald-400/20 animate-pulse"
+                                  r={dotSize + 3}
+                                  className="fill-emerald-400/20 animate-ping"
                                 />
                                 <circle
                                   cx={coords.x}
                                   cy={coords.y}
                                   r={dotSize}
-                                  className="fill-emerald-400 border border-slate-950"
+                                  className="fill-emerald-400 stroke-slate-950 stroke-[1.5]"
                                 />
                                 <title>{`${loc.country}: ${loc.count} sessions`}</title>
                               </g>
