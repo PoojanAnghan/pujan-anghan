@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../utils/supabase';
 import SEO from '../components/SEO';
-import { BarChart3, Users, Clock, Target, MapPin, Globe, Compass, ArrowRight, ShieldAlert, LogOut, Loader2, Calendar } from 'lucide-react';
+import BlogManager from '../components/BlogManager';
+import { BarChart3, Users, Clock, Target, MapPin, Globe, Compass, ArrowRight, ShieldAlert, LogOut, Loader2, Calendar, FileText } from 'lucide-react';
 
 // Coordinates mapping on a 200x100 SVG grid for simple dot map
 const COUNTRY_COORDINATES = {
@@ -65,6 +66,9 @@ const AdminDashboard = () => {
   const [password, setPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState(null);
+
+  // Admin Tab State
+  const [activeTab, setActiveTab] = useState('analytics');
 
   // Filter States
   const [dateRange, setDateRange] = useState('7d'); // 'today', '7d', '30d', 'custom'
@@ -357,7 +361,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 px-6 py-12">
-      <SEO title="Analytics Dashboard | Admin" noindex={true} />
+      <SEO title="Admin Dashboard" noindex={true} />
 
       <div className="max-w-6xl mx-auto space-y-8">
         
@@ -368,26 +372,54 @@ const AdminDashboard = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               Console Connected
             </div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Visitor Analytics</h1>
+            <h1 className="text-3xl font-bold text-white tracking-tight">Admin Dashboard</h1>
+
+            {/* Tab Switcher */}
+            <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-lg text-sm mt-4">
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`px-4 py-1.5 rounded-md font-medium transition-all cursor-pointer flex items-center gap-2 ${
+                  activeTab === 'analytics'
+                    ? 'bg-emerald-600 text-white'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <BarChart3 size={14} />
+                Analytics
+              </button>
+              <button
+                onClick={() => setActiveTab('blog')}
+                className={`px-4 py-1.5 rounded-md font-medium transition-all cursor-pointer flex items-center gap-2 ${
+                  activeTab === 'blog'
+                    ? 'bg-emerald-600 text-white'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <FileText size={14} />
+                Blog Manager
+              </button>
+            </div>
           </div>
 
           <div className="flex items-center gap-4 w-full md:w-auto">
-            {/* Date Filters */}
-            <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-lg text-sm w-full md:w-auto overflow-x-auto">
-              {['today', '7d', '30d', 'custom'].map((mode) => (
-                <button
-                  key={mode}
-                  onClick={() => setDateRange(mode)}
-                  className={`px-4 py-1.5 rounded-md font-medium capitalize transition-all cursor-pointer whitespace-nowrap ${
-                    dateRange === mode
-                      ? 'bg-emerald-600 text-white'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {mode === '7d' ? '7 days' : mode === '30d' ? '30 days' : mode}
-                </button>
-              ))}
-            </div>
+            {/* Date Filters (only for analytics tab) */}
+            {activeTab === 'analytics' && (
+              <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-lg text-sm w-full md:w-auto overflow-x-auto">
+                {['today', '7d', '30d', 'custom'].map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => setDateRange(mode)}
+                    className={`px-4 py-1.5 rounded-md font-medium capitalize transition-all cursor-pointer whitespace-nowrap ${
+                      dateRange === mode
+                        ? 'bg-emerald-600 text-white'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    {mode === '7d' ? '7 days' : mode === '30d' ? '30 days' : mode}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <button
               onClick={handleLogout}
@@ -399,6 +431,12 @@ const AdminDashboard = () => {
           </div>
         </header>
 
+        {/* Blog Manager Tab */}
+        {activeTab === 'blog' && <BlogManager />}
+
+        {/* Analytics Tab Content */}
+        {activeTab === 'analytics' && (
+          <>
         {/* Custom Range Picker */}
         {dateRange === 'custom' && (
           <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end max-w-3xl animate-fade-in">
@@ -775,6 +813,8 @@ const AdminDashboard = () => {
 
               </>
             )}
+          </>
+        )}
           </>
         )}
 

@@ -69,3 +69,47 @@ CREATE INDEX IF NOT EXISTS idx_page_events_session_id ON public.page_events(sess
 CREATE INDEX IF NOT EXISTS idx_page_events_timestamp ON public.page_events(timestamp);
 CREATE INDEX IF NOT EXISTS idx_conversion_events_session_id ON public.conversion_events(session_id);
 CREATE INDEX IF NOT EXISTS idx_conversion_events_timestamp ON public.conversion_events(timestamp);
+
+-- ==========================================
+-- Blog Posts Table
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS public.blog_posts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  excerpt TEXT,
+  content TEXT NOT NULL,
+  cover_image_url TEXT,
+  tags TEXT[] DEFAULT '{}',
+  status TEXT NOT NULL DEFAULT 'draft',
+  published_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Enable RLS for Blog Posts
+ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
+
+-- Public can read published posts (anonymous + authenticated)
+CREATE POLICY public_read_published_posts ON public.blog_posts
+  FOR SELECT TO anon, authenticated
+  USING (status = 'published');
+
+-- Authenticated admin can do everything
+CREATE POLICY admin_all_blog_posts ON public.blog_posts
+  FOR ALL TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+-- Indexes for Blog Posts
+CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON public.blog_posts(slug);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_status ON public.blog_posts(status);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_published_at ON public.blog_posts(published_at);
+
+-- ==========================================
+-- Supabase Storage: Blog Images Bucket
+-- ==========================================
+-- NOTE: Create a storage bucket named 'blog-images' in the
+-- Supabase Dashboard > Storage with PUBLIC access enabled.
+-- This allows cover images and inline images to be served publicly.

@@ -12,6 +12,8 @@ import ProjectsSection from './components/ProjectsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import GetAQuote from './pages/GetAQuote';
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const BlogList = lazy(() => import('./pages/BlogList'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 import { trackPageView } from './utils/analytics';
 
 const Portfolio = () => {
@@ -93,6 +95,7 @@ const Portfolio = () => {
               <NavigationLink to="/projects" label="Projects" />
               <NavigationLink to="/services" label="Services" />
               <NavigationLink to="/experience" label="Experience" />
+              <NavigationLink to="/blog" label="Blog" />
               <NavigationLink to="/testimonials" label="Testimonials" />
               <Link
                 to="/contact"
@@ -123,6 +126,7 @@ const Portfolio = () => {
               <MobileNavigationLink to="/projects" label="Projects" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/services" label="Services" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/experience" label="Experience" onClick={() => setIsMenuOpen(false)} />
+              <MobileNavigationLink to="/blog" label="Blog" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/testimonials" label="Testimonials" onClick={() => setIsMenuOpen(false)} />
               <MobileNavigationLink to="/contact" label="Contact" onClick={() => setIsMenuOpen(false)} />
             </div>
@@ -140,6 +144,30 @@ const Portfolio = () => {
             <Route path="/testimonials" element={<TestimonialsSection />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/quote" element={<GetAQuote />} />
+            <Route
+              path="/blog"
+              element={
+                <Suspense fallback={
+                  <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                  </div>
+                }>
+                  <BlogList />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/blog/:slug"
+              element={
+                <Suspense fallback={
+                  <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                  </div>
+                }>
+                  <BlogPost />
+                </Suspense>
+              }
+            />
             <Route 
               path="/admin" 
               element={
