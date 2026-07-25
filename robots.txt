@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /#/admin
 
-Sitemap: https://PoojanAnghan.github.io/pujan-anghan/sitemap.xml
+Sitemap: https://pujan-anghan.vercel.app/sitemap.xml
