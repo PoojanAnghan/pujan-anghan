@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify';
 import CoverImagesManager from './CoverImagesManager';
 import CoverImageCarousel from './CoverImageCarousel';
 import { getCoverImages } from '../utils/blogImages';
+import { notifySubscribersOfNewPost } from '../utils/notifications';
 import {
   Plus, Edit3, Trash2, Eye, EyeOff, Save, X, Upload, Image as ImageIcon,
   Loader2, AlertTriangle, Check, FileText, Search
@@ -43,6 +44,7 @@ const BlogManager = () => {
   const [formStatus, setFormStatus] = useState('draft');
   const [formCoverImages, setFormCoverImages] = useState([]);
   const [inlineUploading, setInlineUploading] = useState(false);
+  const [notifySubscribers, setNotifySubscribers] = useState(false);
 
   // Delete confirmation
   const [deleteTarget, setDeleteTarget] = useState(null);
@@ -88,6 +90,7 @@ const BlogManager = () => {
     setFormCoverImages([]);
     setEditingPost(null);
     setShowPreview(false);
+    setNotifySubscribers(false);
   };
 
   const openNewPost = () => {
@@ -196,14 +199,25 @@ const BlogManager = () => {
           .eq('id', editingPost.id);
 
         if (error) throw error;
-        showNotification('Post updated successfully');
       } else {
         const { error } = await supabase
           .from('blog_posts')
           .insert([postData]);
 
         if (error) throw error;
-        showNotification('Post created successfully');
+      }
+
+      // Notify subscribers if checked
+      if (formStatus === 'published' && notifySubscribers) {
+        try {
+          const report = await notifySubscribersOfNewPost(postData);
+          showNotification(`Post published. Notified ${report.sent} subscribers!`);
+        } catch (subErr) {
+          console.error('Notification error:', subErr);
+          showNotification('Post published but subscriber emails failed to send.', 'error');
+        }
+      } else {
+        showNotification(editingPost ? 'Post updated successfully' : 'Post created successfully');
       }
 
       closeEditor();
@@ -256,7 +270,19 @@ const BlogManager = () => {
         .eq('id', post.id);
 
       if (error) throw error;
-      showNotification(`Post ${newStatus === 'published' ? 'published' : 'unpublished'}`);
+      
+      if (newStatus === 'published') {
+        try {
+          const report = await notifySubscribersOfNewPost(post);
+          showNotification(`Post published. Notified ${report.sent} subscribers!`);
+        } catch (subErr) {
+          console.error('Notification error:', subErr);
+          showNotification('Post published but subscriber emails failed to send.', 'error');
+        }
+      } else {
+        showNotification(`Post status updated to ${newStatus}`);
+      }
+      
       fetchPosts();
     } catch (err) {
       console.error('Toggle status error:', err);
@@ -710,6 +736,20 @@ const BlogManager = () => {
                       Published
                     </button>
                   </div>
+                  {formStatus === 'published' && (
+                    <div className="flex items-center gap-2 mt-4 animate-fade-in">
+                      <input
+                        type="checkbox"
+                        id="notifySubscribers"
+                        checked={notifySubscribers}
+                        onChange={(e) => setNotifySubscribers(e.target.checked)}
+                        className="w-4 h-4 rounded border-slate-700 bg-slate-800 text-emerald-500 focus:ring-emerald-500 cursor-pointer"
+                      />
+                      <label htmlFor="notifySubscribers" className="text-sm font-medium text-slate-350 cursor-pointer select-none">
+                        Notify all subscribers
+                      </label>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

@@ -14,6 +14,7 @@ import GetAQuote from './pages/GetAQuote';
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const BlogList = lazy(() => import('./pages/BlogList'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Unsubscribe = lazy(() => import('./pages/Unsubscribe'));
 import { trackPageView } from './utils/analytics';
 
 const Portfolio = () => {
@@ -165,6 +166,18 @@ const Portfolio = () => {
                   </div>
                 }>
                   <BlogPost />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/unsubscribe"
+              element={
+                <Suspense fallback={
+                  <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                  </div>
+                }>
+                  <Unsubscribe />
                 </Suspense>
               }
             />

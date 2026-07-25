@@ -1,12 +1,7 @@
 import { useState } from "react"
-import emailjs from "@emailjs/browser"
+import { supabase } from "../utils/supabase"
 import SEO from "../components/SEO"
 import { trackEvent } from "../utils/analytics"
-
-const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const AUTOREPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
 
 const INITIAL_FORM = {
   name: "",
@@ -59,53 +54,33 @@ export default function GetAQuote() {
     }
     setLoading(true)
     try {
-      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-        throw new Error("Missing EmailJS environment keys (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, or VITE_EMAILJS_PUBLIC_KEY). Please make sure they are defined in your .env file and restart your Vite server.");
-      }
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name:    form.name,
-          from_email:   form.email,
-          whatsapp:     form.whatsapp     || "Not provided",
-          company:      form.company      || "Not provided",
-          service:      form.service,
-          budget:       form.budget,
-          timeline:     form.timeline,
-          message:      form.description,
-          design_ready: form.designReady,
-          referral:     form.referral     || "Not specified",
-        },
-        PUBLIC_KEY
-      )
-      if (AUTOREPLY_TEMPLATE_ID) {
-        try {
-          await emailjs.send(
-            SERVICE_ID,
-            AUTOREPLY_TEMPLATE_ID,
-            {
-              from_name:    form.name,
-              from_email:   form.email,
-              service:      form.service,
-              budget:       form.budget,
-              timeline:     form.timeline,
-              company:      form.company      || "Not provided",
-              design_ready: form.designReady,
-              message:      form.description,
-            },
-            PUBLIC_KEY
-          );
-        } catch (autoReplyErr) {
-          console.error("Auto-reply transmission failed:", autoReplyErr);
+      const { error: quoteError } = await supabase.functions.invoke('send-email', {
+        body: {
+          type: 'quote',
+          form: {
+            name: form.name,
+            email: form.email,
+            whatsapp: form.whatsapp,
+            company: form.company,
+            service: form.service,
+            budget: form.budget,
+            timeline: form.timeline,
+            description: form.description,
+            designReady: form.designReady,
+            referral: form.referral,
+          },
+          siteUrl: window.location.origin
         }
-      }
+      });
+      
+      if (quoteError) throw quoteError;
+
       trackEvent('quote_submit', { service: form.service, budget: form.budget });
       setSuccess(true)
       setForm(INITIAL_FORM)
     } catch (err) {
       console.error("Submission failed:", err);
-      const errMsg = err?.text || err?.message || (typeof err === 'string' ? err : "EmailJS API request failed.");
+      const errMsg = err?.message || (typeof err === 'string' ? err : "API request failed.");
       setSubmitError(
         <span>
           Submission failed: {errMsg}. You can email me directly at{" "}

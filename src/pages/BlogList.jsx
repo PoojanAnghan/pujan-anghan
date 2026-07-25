@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import CoverImageCarousel from '../components/CoverImageCarousel';
 import { getCoverImages } from '../utils/blogImages';
 import { Calendar, Tag, ArrowRight, Search, BookOpen, Loader2 } from 'lucide-react';
+import SubscribeForm from '../components/SubscribeForm';
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
@@ -237,6 +238,13 @@ const BlogList = () => {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Subscription Section */}
+      <section className="py-16 md:py-24 bg-slate-950 border-t border-slate-900">
+        <div className="container mx-auto px-6">
+          <SubscribeForm />
         </div>
       </section>
     </div>

@@ -113,3 +113,40 @@ CREATE INDEX IF NOT EXISTS idx_blog_posts_published_at ON public.blog_posts(publ
 -- NOTE: Create a storage bucket named 'blog-images' in the
 -- Supabase Dashboard > Storage with PUBLIC access enabled.
 -- This allows cover images and inline images to be served publicly.
+
+-- ==========================================
+-- Subscribers Table
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS public.subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL UNIQUE,
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'unsubscribed')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  unsubscribed_at TIMESTAMPTZ
+);
+
+-- Enable RLS for Subscribers
+ALTER TABLE public.subscribers ENABLE ROW LEVEL SECURITY;
+
+-- 1. Public (anonymous) can insert a new subscription
+CREATE POLICY public_insert_subscriber ON public.subscribers
+  FOR INSERT TO anon, authenticated
+  WITH CHECK (true);
+
+-- 2. Public can update their status to unsubscribed (using their UUID)
+CREATE POLICY public_update_subscriber ON public.subscribers
+  FOR UPDATE TO anon, authenticated
+  USING (true)
+  WITH CHECK (status = 'unsubscribed');
+
+-- 3. Authenticated admin can read/manage all subscribers
+CREATE POLICY admin_manage_subscribers ON public.subscribers
+  FOR ALL TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+-- Indexes for Subscribers
+CREATE INDEX IF NOT EXISTS idx_subscribers_email ON public.subscribers(email);
+CREATE INDEX IF NOT EXISTS idx_subscribers_status ON public.subscribers(status);
+
