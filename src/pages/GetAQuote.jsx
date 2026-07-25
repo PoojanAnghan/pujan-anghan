@@ -192,11 +192,11 @@ export default function GetAQuote() {
                 <span className="text-lg">💬</span>
                 WhatsApp me
               </a>
-              <a href="https://www.linkedin.com/in/poojan-anghan-447073340" target="_blank" rel="noreferrer"
+              <a href="https://www.linkedin.com/in/poojan-a-447073340/" target="_blank" rel="noreferrer"
                 className="flex items-center gap-3 text-slate-400 hover:text-emerald-400
                   transition-colors text-sm">
                 <span className="text-lg">🔗</span>
-                linkedin.com/in/poojan-anghan
+                linkedin.com/in/poojan-a-447073340
               </a>
             </div>
 

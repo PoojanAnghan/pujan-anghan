@@ -98,7 +98,7 @@ Deno.serve(async (req) => {
           <span style="color: #334155;">&bull;</span>
           <a href="https://wa.me/917043832747" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">WhatsApp</a>
           <span style="color: #334155;">&bull;</span>
-          <a href="https://www.linkedin.com/in/poojan-anghan-447073340" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/poojan-a-447073340/" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
         </div>
         <div class="unsubscribe-text">
           If you didn't mean to subscribe, you can <a href="${unsubscribeUrl}" target="_blank">unsubscribe here</a>.
@@ -202,7 +202,7 @@ Deno.serve(async (req) => {
           <span style="color: #334155;">&bull;</span>
           <a href="https://wa.me/917043832747" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">WhatsApp</a>
           <span style="color: #334155;">&bull;</span>
-          <a href="https://www.linkedin.com/in/poojan-anghan-447073340" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/poojan-a-447073340/" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
         </div>
         <div class="unsubscribe-text">
           Want to stop receiving these emails? <a href="${unsubscribeUrl}" target="_blank">Unsubscribe here</a>.
@@ -312,7 +312,7 @@ Deno.serve(async (req) => {
           <span style="color: #334155;">&bull;</span>
           <a href="https://wa.me/917043832747" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">WhatsApp</a>
           <span style="color: #334155;">&bull;</span>
-          <a href="https://www.linkedin.com/in/poojan-anghan-447073340" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/poojan-a-447073340/" target="_blank" style="color: #10b981; text-decoration: none; margin: 0 10px;">LinkedIn</a>
         </div>
       </div>
     </div>

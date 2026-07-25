@@ -52,7 +52,7 @@ const Contact = () => {
             <a href="https://github.com/PoojanAnghan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
               <Github size={20} /> <span className="hidden sm:inline">@PoojanAnghan</span>
             </a>
-            <a href="https://www.linkedin.com/in/poojan-anghan-447073340" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+            <a href="https://www.linkedin.com/in/poojan-a-447073340/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
               <Linkedin size={20} /> <span className="hidden sm:inline">Poojan Anghan</span>
             </a>
           </div>
