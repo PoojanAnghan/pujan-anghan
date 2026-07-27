@@ -6,6 +6,7 @@ import CoverImageCarousel from '../components/CoverImageCarousel';
 import { getCoverImages } from '../utils/blogImages';
 import { Calendar, Tag, ArrowRight, Search, BookOpen, Loader2 } from 'lucide-react';
 import SubscribeForm from '../components/SubscribeForm';
+import AdBanner from '../components/AdBanner';
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
@@ -168,73 +169,77 @@ const BlogList = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPosts.map((post, index) => (
-                <Link
-                  key={post.id}
-                  to={`/blog/${post.slug}`}
-                  className="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-500 shadow-lg hover:shadow-emerald-900/10 hover:-translate-y-1 flex flex-col"
-                  style={{ animationDelay: `${index * 80}ms` }}
-                >
-                  {/* Cover Image */}
-                  {getCoverImages(post).length > 0 ? (
-                    <CoverImageCarousel images={getCoverImages(post)} alt={post.title} className="h-48" />
-                  ) : (
-                    <div className="relative h-48 bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 flex items-center justify-center">
-                      <BookOpen className="w-12 h-12 text-slate-700" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    {/* Date & Read Time */}
-                    <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar size={12} />
-                        {formatDate(post.published_at)}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors leading-snug line-clamp-2">
-                      {post.title}
-                    </h2>
-
-                    {/* Excerpt */}
-                    {post.excerpt && (
-                      <p className="text-sm text-slate-400 mb-4 leading-relaxed line-clamp-3 flex-grow">
-                        {post.excerpt}
-                      </p>
-                    )}
-
-                    {/* Tags */}
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400 font-medium"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {post.tags.length > 3 && (
-                          <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-500">
-                            +{post.tags.length - 3}
-                          </span>
-                        )}
+                <React.Fragment key={post.id}>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-500 shadow-lg hover:shadow-emerald-900/10 hover:-translate-y-1 flex flex-col"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
+                    {/* Cover Image */}
+                    {getCoverImages(post).length > 0 ? (
+                      <CoverImageCarousel images={getCoverImages(post)} alt={post.title} className="h-48" />
+                    ) : (
+                      <div className="relative h-48 bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 flex items-center justify-center">
+                        <BookOpen className="w-12 h-12 text-slate-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                       </div>
                     )}
 
-                    {/* Read More */}
-                    <div className="flex items-center gap-1.5 text-emerald-400 text-sm font-medium mt-auto pt-2">
-                      Read article
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      {/* Date & Read Time */}
+                      <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                        <span className="flex items-center gap-1.5">
+                          <Calendar size={12} />
+                          {formatDate(post.published_at)}
+                        </span>
+                      </div>
 
-                  {/* Hover glow effect */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2"></div>
-                </Link>
+                      {/* Title */}
+                      <h2 className="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors leading-snug line-clamp-2">
+                        {post.title}
+                      </h2>
+
+                      {/* Excerpt */}
+                      {post.excerpt && (
+                        <p className="text-sm text-slate-400 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                          {post.excerpt}
+                        </p>
+                      )}
+
+                      {/* Tags */}
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400 font-medium"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {post.tags.length > 3 && (
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-500">
+                              +{post.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Read More */}
+                      <div className="flex items-center gap-1.5 text-emerald-400 text-sm font-medium mt-auto pt-2">
+                        Read article
+                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+
+                    {/* Hover glow effect */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2"></div>
+                  </Link>
+                  {index === 2 && (
+                    <AdBanner layout="card" slot="feed-ad-1" style={{ animationDelay: `${(index + 1) * 80}ms` }} />
+                  )}
+                </React.Fragment>
               ))}
             </div>
           )}

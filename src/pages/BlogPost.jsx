@@ -7,12 +7,33 @@ import DOMPurify from 'dompurify';
 import CoverImageCarousel from '../components/CoverImageCarousel';
 import { getCoverImages } from '../utils/blogImages';
 import { Calendar, Tag, ArrowLeft, Loader2, BookOpen } from 'lucide-react';
+import AdBanner from '../components/AdBanner';
 
 // Configure marked for safe rendering
 marked.setOptions({
   breaks: true,
   gfm: true,
 });
+
+const injectMiddleAd = (htmlContent) => {
+  if (!htmlContent) return { part1: '', part2: null };
+  const paragraphs = htmlContent.split('</p>');
+  
+  // Filter out any trailing empty items to avoid appending empty paragraphs
+  const cleanParagraphs = paragraphs.filter(p => p.trim() !== '');
+  
+  if (cleanParagraphs.length < 2) {
+    return { part1: htmlContent, part2: null };
+  }
+  
+  // Decide where to split. If it's a longer article, split in the middle; otherwise split after paragraph 1 or 2
+  const midIndex = cleanParagraphs.length > 4 ? Math.ceil(cleanParagraphs.length / 2) : 1;
+  
+  const part1 = cleanParagraphs.slice(0, midIndex).join('</p>') + '</p>';
+  const part2 = cleanParagraphs.slice(midIndex).join('</p>') + '</p>';
+  
+  return { part1, part2 };
+};
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -180,9 +201,14 @@ const BlogPost = () => {
             </div>
           )}
 
-          {/* Rendered Markdown Content */}
-          <article
-            className="prose prose-invert prose-emerald max-w-none
+          {/* Top Ad (below excerpt box) */}
+          <AdBanner layout="horizontal" slot="top-post-ad" />
+
+          {/* Rendered Markdown Content split for Middle Ad */}
+          {(() => {
+            const htmlContent = renderContent(post.content);
+            const { part1, part2 } = injectMiddleAd(htmlContent);
+            const articleClass = `prose prose-invert prose-emerald max-w-none
               prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
               prose-h1:text-3xl prose-h1:mb-6 prose-h1:mt-12
               prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-10 prose-h2:border-b prose-h2:border-slate-800 prose-h2:pb-3
@@ -200,9 +226,31 @@ const BlogPost = () => {
               prose-hr:border-slate-800
               prose-table:border prose-table:border-slate-800
               prose-th:bg-slate-900 prose-th:text-white prose-th:border-slate-800
-              prose-td:border-slate-800"
-            dangerouslySetInnerHTML={{ __html: renderContent(post.content) }}
-          />
+              prose-td:border-slate-800`;
+
+            return (
+              <div className="flex flex-col w-full">
+                <article
+                  className={articleClass}
+                  dangerouslySetInnerHTML={{ __html: part1 }}
+                />
+                
+                {part2 && (
+                  <>
+                    {/* Middle Ad (dynamically placed mid-article) */}
+                    <AdBanner layout="horizontal" slot="mid-post-ad" className="my-8" />
+                    <article
+                      className={articleClass}
+                      dangerouslySetInnerHTML={{ __html: part2 }}
+                    />
+                  </>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* Bottom Ad (at the end of post content) */}
+          <AdBanner layout="horizontal" slot="bottom-post-ad" />
         </div>
       </section>
     </div>
