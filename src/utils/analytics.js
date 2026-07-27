@@ -81,10 +81,37 @@ const postEvent = async (payload) => {
   }
 };
 
+let gaInitialized = false;
+
+// Initialize Google Analytics (gtag.js) dynamically
+const initGA = (measurementId) => {
+  if (gaInitialized || !measurementId) return;
+
+  try {
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.text = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${measurementId}', { send_page_view: false });
+    `;
+    document.head.appendChild(script2);
+    gaInitialized = true;
+  } catch (error) {
+    console.warn('Failed to initialize Google Analytics:', error);
+  }
+};
+
 export const trackPageView = (path) => {
   // Never track the admin page views to avoid skewing metrics
   if (path === '/admin') return;
 
+  // 1. Custom Database Tracking
   const utms = getUTMParams();
   postEvent({
     session_id: getSessionId(),
@@ -95,13 +122,36 @@ export const trackPageView = (path) => {
     browser: getBrowser(),
     ...utms
   });
+
+  // 2. Google Analytics 4 Tracking
+  const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  if (gaId) {
+    initGA(gaId);
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_path: path,
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    }
+  }
 };
 
 export const trackEvent = (eventName, metadata = {}) => {
+  // 1. Custom Database Tracking
   postEvent({
     session_id: getSessionId(),
     type: 'conversion',
     event_name: eventName,
     metadata
   });
+
+  // 2. Google Analytics 4 Tracking
+  const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  if (gaId) {
+    initGA(gaId);
+    if (window.gtag) {
+      window.gtag('event', eventName, metadata);
+    }
+  }
 };
