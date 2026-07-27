@@ -18,12 +18,14 @@ const AdBanner = ({
   const defaultSlotId = import.meta.env.VITE_ADSENSE_SLOT_ID || '';
   const currentSlot = slot || defaultSlotId;
 
-  const isAdSenseEnabled = !!clientId;
+  // Live ad units require both a Client ID and a Slot ID
+  const isAdSenseEnabled = !!clientId && !!currentSlot;
 
   useEffect(() => {
-    if (!isAdSenseEnabled) return;
+    if (!clientId) return;
 
     // Dynamically inject Google AdSense script if not present
+    // This allows Auto Ads to run on the page if enabled in the AdSense console
     let script = document.querySelector('script[src*="pagead2.googlesyndication.com"]');
     if (!script) {
       script = document.createElement('script');
@@ -32,6 +34,8 @@ const AdBanner = ({
       script.crossOrigin = 'anonymous';
       document.head.appendChild(script);
     }
+
+    if (!isAdSenseEnabled) return;
 
     // Call AdSense push logic once the component mounts
     const initAd = () => {
