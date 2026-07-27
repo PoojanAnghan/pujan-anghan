@@ -22,19 +22,6 @@ const AdBanner = ({
   const isAdSenseEnabled = !!clientId && !!currentSlot;
 
   useEffect(() => {
-    if (!clientId) return;
-
-    // Dynamically inject Google AdSense script if not present
-    // This allows Auto Ads to run on the page if enabled in the AdSense console
-    let script = document.querySelector('script[src*="pagead2.googlesyndication.com"]');
-    if (!script) {
-      script = document.createElement('script');
-      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
-      script.async = true;
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
-    }
-
     if (!isAdSenseEnabled) return;
 
     // Call AdSense push logic once the component mounts
@@ -55,7 +42,7 @@ const AdBanner = ({
     };
 
     initAd();
-  }, [isAdSenseEnabled, clientId]);
+  }, [isAdSenseEnabled]);
 
   // If AdSense is configured, render the standard Google Ads container
   if (isAdSenseEnabled) {
