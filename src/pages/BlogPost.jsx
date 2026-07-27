@@ -99,12 +99,18 @@ const BlogPost = () => {
     );
   }
 
+  const coverImages = getCoverImages(post);
+  const mainImage = coverImages.length > 0 ? coverImages[0] : '';
+
   return (
     <div className="flex flex-col w-full">
       <SEO
         title={`${post.title} — Poojan Anghan Blog`}
         description={post.excerpt || post.title}
         keywords={post.tags ? post.tags.join(', ') : 'Poojan Anghan Blog'}
+        image={mainImage}
+        type="article"
+        publishedTime={post.published_at}
       />
 
       {/* Hero Section */}
