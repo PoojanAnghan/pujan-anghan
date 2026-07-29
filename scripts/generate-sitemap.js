@@ -42,13 +42,15 @@ const BASE_URL = 'https://pujan-anghan.vercel.app';
 // Static pages
 const staticPages = [
   '',
-  '#/about',
-  '#/projects',
-  '#/services',
-  '#/experience',
-  '#/blog',
-  '#/testimonials',
-  '#/contact'
+  'about',
+  'projects',
+  'services',
+  'services/it-consulting',
+  'services/web-development',
+  'experience',
+  'blog',
+  'testimonials',
+  'contact'
 ];
 
 async function generate() {
@@ -85,7 +87,7 @@ async function generate() {
   posts.forEach((post) => {
     const postDate = new Date(post.updated_at || new Date()).toISOString().split('T')[0];
     xml += '  <url>\n';
-    xml += `    <loc>${BASE_URL}/#/blog/${post.slug}</loc>\n`;
+    xml += `    <loc>${BASE_URL}/blog/${post.slug}</loc>\n`;
     xml += `    <lastmod>${postDate}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
     xml += '    <priority>0.7</priority>\n';

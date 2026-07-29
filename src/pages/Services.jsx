@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Code2, Terminal, Database, Cpu } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Services = () => {
   return (
     <>
+      <SEO
+        title="Freelance Software Engineering & Web Development Services | Poojan Anghan"
+        description="Professional freelance services for React frontend builds, Python backend API engineering, custom admin dashboards, and IT consulting by Poojan Anghan."
+        keywords="Freelance React Developer, Python Backend Services, Custom Web Development Surat, IT Consulting India"
+      />
       {/* Services Section */}
       <section id="services" className="py-24 bg-slate-950">
         <div className="container mx-auto px-6">
@@ -16,24 +23,34 @@ const Services = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300 shadow-lg group">
-              <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
-                <Code2 size={24} />
+            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300 shadow-lg group flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Code2 size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Web App Development</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  React.js and Python product builds, admin dashboards, multi-tenant systems, and custom business platforms designed for modern web operations.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Web App Development</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                React.js and Python product builds, admin dashboards, multi-tenant systems, and custom business platforms designed for modern web operations.
-              </p>
+              <Link to="/services/web-development" className="inline-flex items-center gap-1.5 text-emerald-400 text-sm font-semibold hover:text-emerald-300 transition-colors w-fit">
+                Learn more about Web Development &rarr;
+              </Link>
             </div>
 
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300 shadow-lg group">
-              <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
-                <Terminal size={24} />
+            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300 shadow-lg group flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Terminal size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Backend & API Engineering</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  Secure server-side business logic, robust REST APIs (Django, FastAPI, Flask), token-based authentication workflows, and scalable data schema design.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Backend & API Engineering</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Secure server-side business logic, robust REST APIs (Django, FastAPI, Flask), token-based authentication workflows, and scalable data schema design.
-              </p>
+              <Link to="/services/it-consulting" className="inline-flex items-center gap-1.5 text-emerald-400 text-sm font-semibold hover:text-emerald-300 transition-colors w-fit">
+                Learn more about IT Consulting &rarr;
+              </Link>
             </div>
           </div>
 

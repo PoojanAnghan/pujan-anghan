@@ -100,11 +100,10 @@ const ProjectsSection = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer border ${
-                activeCategory === cat
+              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer border ${activeCategory === cat
                   ? "bg-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-900/20"
                   : "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white"
-              }`}
+                }`}
             >
               {cat}
             </button>

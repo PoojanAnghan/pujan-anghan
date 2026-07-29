@@ -18,20 +18,20 @@ marked.setOptions({
 const injectMiddleAd = (htmlContent) => {
   if (!htmlContent) return { part1: '', part2: null };
   const paragraphs = htmlContent.split('</p>');
-  
+
   // Filter out any trailing empty items to avoid appending empty paragraphs
   const cleanParagraphs = paragraphs.filter(p => p.trim() !== '');
-  
+
   if (cleanParagraphs.length < 2) {
     return { part1: htmlContent, part2: null };
   }
-  
+
   // Decide where to split. If it's a longer article, split in the middle; otherwise split after paragraph 1 or 2
   const midIndex = cleanParagraphs.length > 4 ? Math.ceil(cleanParagraphs.length / 2) : 1;
-  
+
   const part1 = cleanParagraphs.slice(0, midIndex).join('</p>') + '</p>';
   const part2 = cleanParagraphs.slice(midIndex).join('</p>') + '</p>';
-  
+
   return { part1, part2 };
 };
 
@@ -234,7 +234,7 @@ const BlogPost = () => {
                   className={articleClass}
                   dangerouslySetInnerHTML={{ __html: part1 }}
                 />
-                
+
                 {part2 && (
                   <>
                     {/* Middle Ad (dynamically placed mid-article) */}

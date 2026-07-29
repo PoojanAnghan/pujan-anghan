@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-import { 
-  Users, UserX, Trash2, Search, Filter, Loader2, AlertCircle, Check, Mail 
+import {
+  Users, UserX, Trash2, Search, Filter, Loader2, AlertCircle, Check, Mail
 } from 'lucide-react';
 
 export default function SubscribersManager() {
@@ -112,11 +112,10 @@ export default function SubscribersManager() {
       {/* Toast Notification */}
       {notification && (
         <div
-          className={`fixed top-6 right-6 z-[100] px-5 py-3 rounded-xl shadow-2xl border text-sm font-medium flex items-center gap-2.5 animate-slide-in-right ${
-            notification.type === 'error'
-              ? 'bg-red-950/90 border-red-800 text-red-300'
-              : 'bg-emerald-950/90 border-emerald-800 text-emerald-300'
-          }`}
+          className={`fixed top-6 right-6 z-[100] px-5 py-3 rounded-xl shadow-2xl border text-sm font-medium flex items-center gap-2.5 animate-slide-in-right ${notification.type === 'error'
+            ? 'bg-red-950/90 border-red-800 text-red-300'
+            : 'bg-emerald-950/90 border-emerald-800 text-emerald-300'
+            }`}
         >
           {notification.type === 'error' ? (
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
@@ -178,11 +177,10 @@ export default function SubscribersManager() {
             <button
               key={mode}
               onClick={() => setStatusFilter(mode)}
-              className={`px-4 py-1.5 rounded-md font-medium capitalize transition-all cursor-pointer whitespace-nowrap ${
-                statusFilter === mode
-                  ? 'bg-slate-800 text-emerald-400'
-                  : 'text-slate-400 hover:text-white'
-              }`}
+              className={`px-4 py-1.5 rounded-md font-medium capitalize transition-all cursor-pointer whitespace-nowrap ${statusFilter === mode
+                ? 'bg-slate-800 text-emerald-400'
+                : 'text-slate-400 hover:text-white'
+                }`}
             >
               {mode}
             </button>
@@ -221,11 +219,10 @@ export default function SubscribersManager() {
                     <td className="px-6 py-4 text-slate-400">{formatDate(sub.created_at)}</td>
                     <td className="px-6 py-4">
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                          sub.status === 'active'
-                            ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
-                            : 'text-slate-450 bg-slate-800 border-slate-700'
-                        }`}
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sub.status === 'active'
+                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                          : 'text-slate-450 bg-slate-800 border-slate-700'
+                          }`}
                       >
                         {sub.status}
                       </span>

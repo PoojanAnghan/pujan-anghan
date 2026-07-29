@@ -48,6 +48,25 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Onboarding & Delivery Process details to meet word count requirement */}
+          <div className="mt-12 pt-12 border-t border-slate-800 relative z-10 max-w-2xl mx-auto">
+            <h2 className="text-xl font-bold text-white mb-4 text-center">My Engagement & Collaboration Process</h2>
+            <div className="space-y-4 text-slate-400 text-sm leading-relaxed">
+              <p>
+                <strong>1. Discovery & Scope Alignment:</strong> We start with a brief discussion or review of your system requirements. I will analyze your goals to define a detailed scope, identify potential bottlenecks early on, and propose the most suitable system architecture.
+              </p>
+              <p>
+                <strong>2. Milestone-Driven Sprints:</strong> Development is divided into structured bi-weekly sprints. Each sprint delivers functional code, active test coverage, and transparent progress updates, ensuring you maintain full visibility over the build timeline.
+              </p>
+              <p>
+                <strong>3. Async-First Communication:</strong> Working with remote teams requires disciplined communication. I provide daily progress summaries, maintain organized issue logs, and document backend schemas, minimizing the need for synchronous meeting overhead.
+              </p>
+              <p>
+                <strong>4. Secure Production Handoff:</strong> When delivery is complete, I transfer full ownership, including clean Git logs, documented API schemas, and containerized Docker environments, allowing your internal teams to scale the application easily.
+              </p>
+            </div>
+          </div>
+
           <div className="mt-12 flex justify-center gap-6 relative z-10">
             <a href="https://github.com/PoojanAnghan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
               <Github size={20} /> <span className="hidden sm:inline">@PoojanAnghan</span>

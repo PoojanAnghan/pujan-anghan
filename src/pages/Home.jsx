@@ -52,10 +52,10 @@ const Home = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left: Text Content */}
             <div className="lg:text-left flex flex-col justify-center animate-fade-in-up order-2 lg:order-1">
-              
+
               {/* Availability badge */}
               <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium backdrop-blur-sm w-fit">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
@@ -72,7 +72,7 @@ const Home = () => {
               <p className="text-lg sm:text-xl text-slate-450 mb-10 leading-relaxed max-w-2xl">
                 I enable companies to launch high-performance digital solutions spanning web and mobile, combining clean architecture, transparent updates, and on-time project execution.
               </p>
-              
+
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-start gap-4 mb-10 w-full sm:w-auto">
                 <Link
@@ -107,16 +107,17 @@ const Home = () => {
               <div className="relative">
                 {/* Glow effect behind photo */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent rounded-full blur-2xl"></div>
-                
+
                 {/* Decorative ring */}
                 <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-600 rounded-full opacity-20"></div>
-                
+
                 {/* Photo container */}
                 <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-2xl shadow-emerald-900/20">
                   <img
                     src={`${import.meta.env.BASE_URL}profile.jpg`}
                     alt="Poojan Anghan - Full-Stack Web Developer"
                     className="w-full h-full object-cover object-center"
+                    fetchpriority="high"
                   />
                 </div>
 
@@ -135,7 +136,7 @@ const Home = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="container mx-auto px-6 relative z-10 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Left: Stats & Brief Info */}
             <div className="space-y-6">
               <div>
@@ -166,7 +167,7 @@ const Home = () => {
             {/* Right: Terminal Console */}
             <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
               <div className="absolute inset-0 bg-emerald-600/5 rounded-2xl blur-xl"></div>
-              
+
               {/* Terminal Window */}
               <div className="relative border border-slate-800 bg-slate-900/80 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md">
                 {/* Header */}
@@ -193,8 +194,8 @@ const Home = () => {
                           isCmd
                             ? 'text-slate-400'
                             : isHighlight
-                            ? 'text-emerald-400 font-semibold'
-                            : 'text-slate-350'
+                              ? 'text-emerald-400 font-semibold'
+                              : 'text-slate-350'
                         }
                       >
                         {isCmd ? <span className="text-slate-500 mr-2">$</span> : null}

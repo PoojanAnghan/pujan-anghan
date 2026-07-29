@@ -72,9 +72,9 @@ const SEO = ({ title, description, keywords, noindex, image, type = 'website', p
       updateMeta('robots', 'index, follow');
     }
 
-    // Update canonical link dynamically per page route (hash-aware)
+    // Update canonical link dynamically per page route (BrowserRouter-aware)
     let canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = window.location.href.split('#')[0] + (window.location.hash || '');
+    const currentUrl = window.location.origin + window.location.pathname;
     if (canonical) {
       canonical.setAttribute('href', currentUrl);
     } else {
@@ -118,18 +118,54 @@ const SEO = ({ title, description, keywords, noindex, image, type = 'website', p
     } else {
       schema = {
         '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        'name': title || 'Poojan Anghan',
-        'url': siteUrl,
-        'author': {
-          '@type': 'Person',
-          'name': authorName,
-          'url': siteUrl,
-          'sameAs': [
-            'https://github.com/PoojanAnghan',
-            'https://pujan-anghan.vercel.app'
-          ]
-        }
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
+            'name': title || 'Poojan Anghan',
+            'url': siteUrl,
+            'publisher': {
+              '@id': `${siteUrl}/#person`
+            }
+          },
+          {
+            '@type': 'Person',
+            '@id': `${siteUrl}/#person`,
+            'name': authorName,
+            'url': siteUrl,
+            'image': `${siteUrl}/profile.jpg`,
+            'sameAs': [
+              'https://github.com/PoojanAnghan',
+              'https://www.linkedin.com/in/poojan-a-447073340/',
+              'https://pujan-anghan.vercel.app'
+            ],
+            'jobTitle': 'Freelance Software Engineer',
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Surat',
+              'addressRegion': 'Gujarat',
+              'addressCountry': 'IN'
+            },
+            'knowsAbout': ['React.js', 'Python', 'Django', 'FastAPI', 'Flask', 'Web Development', 'IT Consulting']
+          },
+          {
+            '@type': 'ProfessionalService',
+            '@id': `${siteUrl}/#service`,
+            'name': authorName,
+            'url': siteUrl,
+            'image': `${siteUrl}/profile.jpg`,
+            'telephone': '+917043832747',
+            'priceRange': '$$',
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Surat',
+              'addressRegion': 'Gujarat',
+              'addressCountry': 'IN'
+            },
+            'knowsAbout': ['React.js', 'Python', 'Django', 'FastAPI', 'Flask', 'Web Development', 'IT Consulting'],
+            'serviceType': 'freelance software/IT consulting'
+          }
+        ]
       };
     }
 

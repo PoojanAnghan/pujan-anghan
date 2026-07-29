@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { HashRouter, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Loader2 } from 'lucide-react';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './components/ServicesSection';
+import Services from './pages/Services';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
@@ -15,6 +15,8 @@ const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const BlogList = lazy(() => import('./pages/BlogList'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Unsubscribe = lazy(() => import('./pages/Unsubscribe'));
+const ITConsulting = lazy(() => import('./pages/ITConsulting'));
+const WebDevelopment = lazy(() => import('./pages/WebDevelopment'));
 import { trackPageView } from './utils/analytics';
 
 const Portfolio = () => {
@@ -33,8 +35,7 @@ const Portfolio = () => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `text-sm font-medium transition-colors duration-300 hover:text-emerald-400 cursor-pointer ${
-          isActive ? 'text-emerald-400 font-semibold' : 'text-slate-300'
+        `text-sm font-medium transition-colors duration-300 hover:text-emerald-400 cursor-pointer ${isActive ? 'text-emerald-400 font-semibold' : 'text-slate-300'
         }`
       }
     >
@@ -47,10 +48,9 @@ const Portfolio = () => {
       to={to}
       onClick={onClick}
       className={({ isActive }) =>
-        `block w-full text-left py-3 px-4 text-base font-medium border-l-2 transition-all cursor-pointer ${
-          isActive
-            ? 'border-emerald-400 text-emerald-400 bg-slate-800/50'
-            : 'border-transparent text-slate-300 hover:bg-slate-800/30'
+        `block w-full text-left py-3 px-4 text-base font-medium border-l-2 transition-all cursor-pointer ${isActive
+          ? 'border-emerald-400 text-emerald-400 bg-slate-800/50'
+          : 'border-transparent text-slate-300 hover:bg-slate-800/30'
         }`
       }
     >
@@ -67,17 +67,16 @@ const Portfolio = () => {
   };
 
   return (
-    <HashRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <AnalyticsTracker />
       <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-emerald-500/30 selection:text-emerald-200 flex flex-col">
         {/* Navigation */}
         <nav
-          className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-            scrolled || isMenuOpen
-              ? 'bg-slate-950/90 backdrop-blur-md border-slate-800 shadow-lg'
-              : 'bg-transparent border-transparent'
-          }`}
+          className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled || isMenuOpen
+            ? 'bg-slate-950/90 backdrop-blur-md border-slate-800 shadow-lg'
+            : 'bg-transparent border-transparent'
+            }`}
         >
           <div className="container mx-auto px-6 h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 cursor-pointer">
@@ -117,9 +116,8 @@ const Portfolio = () => {
 
           {/* Mobile Nav */}
           <div
-            className={`md:hidden absolute w-full bg-slate-900 border-b border-slate-800 shadow-xl transition-all duration-300 overflow-hidden ${
-              isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            }`}
+            className={`md:hidden absolute w-full bg-slate-900 border-b border-slate-800 shadow-xl transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
           >
             <div className="py-2">
               <MobileNavigationLink to="/" label="Home" onClick={() => setIsMenuOpen(false)} />
@@ -141,6 +139,24 @@ const Portfolio = () => {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<ProjectsSection />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/it-consulting" element={
+              <Suspense fallback={
+                <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                  <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                </div>
+              }>
+                <ITConsulting />
+              </Suspense>
+            } />
+            <Route path="/services/web-development" element={
+              <Suspense fallback={
+                <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
+                  <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+                </div>
+              }>
+                <WebDevelopment />
+              </Suspense>
+            } />
             <Route path="/experience" element={<Experience />} />
             <Route path="/testimonials" element={<TestimonialsSection />} />
             <Route path="/contact" element={<Contact />} />
@@ -181,8 +197,8 @@ const Portfolio = () => {
                 </Suspense>
               }
             />
-            <Route 
-              path="/admin" 
+            <Route
+              path="/admin"
               element={
                 <Suspense fallback={
                   <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950">
@@ -191,7 +207,7 @@ const Portfolio = () => {
                 }>
                   <AdminDashboard />
                 </Suspense>
-              } 
+              }
             />
           </Routes>
         </main>
@@ -203,7 +219,7 @@ const Portfolio = () => {
           </div>
         </footer>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

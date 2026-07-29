@@ -395,8 +395,8 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setActiveTab('analytics')}
                 className={`px-4 py-1.5 rounded-md font-medium transition-all cursor-pointer flex items-center gap-2 ${activeTab === 'analytics'
-                    ? 'bg-emerald-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                  ? 'bg-emerald-600 text-white'
+                  : 'text-slate-400 hover:text-white'
                   }`}
               >
                 <BarChart3 size={14} />
@@ -405,8 +405,8 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setActiveTab('blog')}
                 className={`px-4 py-1.5 rounded-md font-medium transition-all cursor-pointer flex items-center gap-2 ${activeTab === 'blog'
-                    ? 'bg-emerald-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                  ? 'bg-emerald-600 text-white'
+                  : 'text-slate-400 hover:text-white'
                   }`}
               >
                 <FileText size={14} />
@@ -415,8 +415,8 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setActiveTab('subscribers')}
                 className={`px-4 py-1.5 rounded-md font-medium transition-all cursor-pointer flex items-center gap-2 ${activeTab === 'subscribers'
-                    ? 'bg-emerald-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                  ? 'bg-emerald-600 text-white'
+                  : 'text-slate-400 hover:text-white'
                   }`}
               >
                 <Users size={14} />
@@ -434,8 +434,8 @@ const AdminDashboard = () => {
                     key={mode}
                     onClick={() => setDateRange(mode)}
                     className={`px-4 py-1.5 rounded-md font-medium capitalize transition-all cursor-pointer whitespace-nowrap ${dateRange === mode
-                        ? 'bg-emerald-600 text-white'
-                        : 'text-slate-400 hover:text-white'
+                      ? 'bg-emerald-600 text-white'
+                      : 'text-slate-400 hover:text-white'
                       }`}
                   >
                     {mode === '7d' ? '7 days' : mode === '30d' ? '30 days' : mode}

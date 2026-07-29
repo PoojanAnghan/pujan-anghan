@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, Sparkles, Code, Server, ArrowRight } from 'lucide-react';
 
-const AdBanner = ({ 
+const AdBanner = ({
   layout = 'horizontal', // 'horizontal' or 'card'
-  slot = '', 
-  format = 'auto', 
+  slot = '',
+  format = 'auto',
   fullWidthResponsive = 'true',
   style = {},
   className = ''
@@ -47,11 +47,10 @@ const AdBanner = ({
   // If AdSense is configured, render the standard Google Ads container
   if (isAdSenseEnabled) {
     return (
-      <div 
-        ref={adRef} 
-        className={`w-full overflow-hidden my-6 mx-auto ${
-          layout === 'horizontal' ? 'max-w-4xl py-2' : 'max-w-md h-full'
-        } ${className}`}
+      <div
+        ref={adRef}
+        className={`w-full overflow-hidden my-6 mx-auto ${layout === 'horizontal' ? 'max-w-4xl py-2' : 'max-w-md h-full'
+          } ${className}`}
         style={style}
       >
         <div className="text-[10px] text-slate-600 uppercase tracking-wider text-center mb-1">
@@ -75,7 +74,7 @@ const AdBanner = ({
       <div className={`w-full max-w-4xl my-10 relative group rounded-2xl overflow-hidden border border-emerald-500/10 bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/20 p-6 md:p-8 backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-950/10 ${className}`}>
         {/* Glow accent */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2"></div>
-        
+
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
           <div className="flex-1 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wider uppercase">
@@ -89,7 +88,7 @@ const AdBanner = ({
               Hire <span className="text-emerald-400 font-medium">Poojan Anghan</span> for scalable React interfaces, fast Python (Django/FastAPI) backend microservices, and reliable custom integrations. Shipped 10+ projects globally.
             </p>
           </div>
-          
+
           <Link
             to="/quote"
             className="flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm transition-all hover:scale-[1.02] shadow-md shadow-emerald-900/15"
@@ -146,7 +145,7 @@ const AdBanner = ({
       {/* Button */}
       <div className="pt-4 mt-auto">
         <Link
-          to="/contact"
+          to="/quote"
           className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/25 hover:border-emerald-500/40 text-xs font-semibold transition-all"
         >
           Consult Now

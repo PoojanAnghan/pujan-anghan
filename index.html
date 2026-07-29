@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Google AdSense Verification -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%VITE_ADSENSE_CLIENT_ID%" crossorigin="anonymous"></script>
+    <script>
+      (function() {
+        const client = "%VITE_ADSENSE_CLIENT_ID%";
+        if (client && client !== "%VITE_ADSENSE_CLIENT_ID%" && client.trim() !== "") {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + client;
+          script.crossOrigin = "anonymous";
+          document.head.appendChild(script);
+        }
+      })();
+    </script>
     
     <!-- Primary SEO Metadata -->
     <title>Poojan Anghan — Software Engineer | React.js & Python Specialist</title>
