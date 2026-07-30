@@ -31,5 +31,16 @@
     "stack": ["Python", "Flask", "MySQL", "Docker"],
     "demoUrl": "https://github.com/PoojanAnghan",
     "githubUrl": "https://github.com/PoojanAnghan"
+  },
+  {
+    "id": 4,
+    "title": "InvoEase — Customizable Enterprise Billing Software",
+    "category": "Web app",
+    "problem": "Companies faced high invoice processing errors and subscription management overhead due to rigid, customizable billing tools.",
+    "outcome": "Developed a modular billing platform with flexible pricing tiers, automated tax calculations, and dynamic invoice generation.",
+    "metrics": ["↓ 45% Billing Overhead", "99.9% Invoice Accuracy"],
+    "stack": ["React", "Django REST Framework", "PostgreSQL", "Stripe API"],
+    "demoUrl": "https://github.com/PoojanAnghan",
+    "githubUrl": "https://github.com/PoojanAnghan"
   }
 ]
