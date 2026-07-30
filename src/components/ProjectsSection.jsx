@@ -2,42 +2,7 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, Globe, Cpu, Settings } from 'lucide-react';
 import SEO from './SEO';
 import { trackEvent } from '../utils/analytics';
-
-const projectsData = [
-  {
-    id: 1,
-    title: "LogiTrack — Enterprise Fleet Management ERP",
-    category: "Web app",
-    problem: "Legacy spreadsheets and high API response times for vehicle telemetry led to coordination lag, causing average logistics delays of 14% across transit lanes.",
-    outcome: "Improved real-time shipment monitoring accuracy to 99% and slashed delivery coordinate mapping latency by 74%.",
-    metrics: ["99% Telemetry Accuracy", "↓ 74% Latency"],
-    stack: ["React", "FastAPI", "PostgreSQL", "Tailwind CSS"],
-    demoUrl: "https://github.com/PoojanAnghan",
-    githubUrl: "https://github.com/PoojanAnghan"
-  },
-  {
-    id: 2,
-    title: "SecureDrop — Cryptographic File Sharing API",
-    category: "API",
-    problem: "Secure document sharing for contract bids needed client-side confidentiality without complex key management.",
-    outcome: "Shipped a zero-knowledge file-sharing service using client-side AES-256 encryption and self-purging server logs.",
-    metrics: ["100% Client Decrypted", "0% Plaintext Logs"],
-    stack: ["JavaScript", "CryptoJS", "Vercel API", "Node.js"],
-    demoUrl: "https://github.com/PoojanAnghan",
-    githubUrl: "https://github.com/PoojanAnghan"
-  },
-  {
-    id: 3,
-    title: "TexFlow — Textile Inventory Automation Tool",
-    category: "Tool",
-    problem: "A local textile manufacturer needed to automate inventory tracking to replace manual spreadsheet errors.",
-    outcome: "Shipped a custom inventory tracking engine integrated with real-time stock notifications.",
-    metrics: ["↓ 60% manual work", "98% Stock Accuracy"],
-    stack: ["Python", "Flask", "MySQL", "Docker"],
-    demoUrl: "https://github.com/PoojanAnghan",
-    githubUrl: "https://github.com/PoojanAnghan"
-  }
-];
+import projectsData from '../data/projects.json';
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
