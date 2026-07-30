@@ -1,32 +1,6 @@
 import React from 'react';
 import SEO from './SEO';
-
-const testimonialsData = [
-  {
-    id: 1,
-    quote: "Poojan delivered the project ahead of schedule and the code quality was excellent. He understood our requirements quickly and needed minimal back-and-forth. Would hire again without hesitation.",
-    name: "Aarav Kumar",
-    role: "Founder",
-    company: "LogiTrack Solutions",
-    initials: "AK"
-  },
-  {
-    id: 2,
-    quote: "The admin portal Poojan built replaced our entire manual workflow. Our team picked it up in a day with no training. Clean, fast, and exactly what we asked for.",
-    name: "Rohit Sharma",
-    role: "Product Manager",
-    company: "MedSync Health",
-    initials: "RS"
-  },
-  {
-    id: 3,
-    quote: "Poojan integrated our payment gateway and automated our subscription flow in under a week. Zero issues since launch. Highly recommend for any backend work.",
-    name: "Meera Vyas",
-    role: "Operations Lead",
-    company: "TexFlow Garments",
-    initials: "MV"
-  }
-];
+import testimonialsData from '../data/testimonials.json';
 
 const socialProofData = [
   "3+ years experience",

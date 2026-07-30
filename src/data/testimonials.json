@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "quote": "Poojan integrated our payment gateway and automated our subscription flow in under a week. Zero issues since launch. Highly recommend for any backend work.",
+    "name": "Meera Vyas",
+    "role": "Operations Lead",
+    "company": "TexFlow Garments",
+    "initials": "MV"
+  },
+  {
+    "id": 1,
+    "quote": "Poojan delivered a customized billing platform that integrated perfectly with our systems. It completely automated our invoicing process and cut down billing overhead significantly. Excellent work!",
+    "name": "Jenil Lukhi",
+    "role": "Sales Head",
+    "company": "GamthiArt",
+    "initials": "JL"
+  }
+]
