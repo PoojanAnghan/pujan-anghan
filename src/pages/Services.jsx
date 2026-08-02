@@ -77,6 +77,12 @@ const Services = () => {
                 </p>
               </div>
             </div>
+            {/* Timezone overlap callout */}
+            <div className="mt-8 pt-6 border-t border-slate-800/60 text-center sm:text-left">
+              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                🌐 <strong>Timezone Flexibility:</strong> Flexible working hours to overlap with US, UK, Canada, Australia, and UAE time zones — async-first communication for minimal friction with international clients.
+              </p>
+            </div>
           </div>
         </div>
       </section>

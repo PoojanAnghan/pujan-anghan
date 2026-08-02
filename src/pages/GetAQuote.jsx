@@ -313,6 +313,9 @@ export default function GetAQuote() {
                         <option>₹50,000+</option>
                         <option>Not sure yet</option>
                       </select>
+                      <p className="text-[11px] text-slate-500 mt-1.5 leading-normal">
+                        Pricing available in USD/GBP/AUD for international clients on request.
+                      </p>
                       <ErrorMsg field="budget" />
                     </div>
                     <div>

@@ -146,7 +146,22 @@ const SEO = ({ title, description, keywords, noindex, image, type = 'website', p
               'addressRegion': 'Gujarat',
               'addressCountry': 'IN'
             },
-            'knowsAbout': ['React.js', 'Python', 'Django', 'FastAPI', 'Flask', 'Web Development', 'IT Consulting']
+            'knowsAbout': [
+              "IT Consulting",
+              "Software Development Consulting",
+              "Systems Architecture",
+              "Business Process Automation",
+              "ERP Systems",
+              "Healthcare Software Development",
+              "Fleet Management Systems",
+              "Booking & Reservation Platforms",
+              "React.js",
+              "Python",
+              "Django REST Framework",
+              "FastAPI",
+              "Database Design",
+              "Cloud Deployment"
+            ]
           },
           {
             '@type': 'ProfessionalService',
@@ -162,8 +177,31 @@ const SEO = ({ title, description, keywords, noindex, image, type = 'website', p
               'addressRegion': 'Gujarat',
               'addressCountry': 'IN'
             },
-            'knowsAbout': ['React.js', 'Python', 'Django', 'FastAPI', 'Flask', 'Web Development', 'IT Consulting'],
-            'serviceType': 'freelance software/IT consulting'
+            'areaServed': [
+              "India",
+              "United States",
+              "United Kingdom",
+              "Canada",
+              "Australia",
+              "United Arab Emirates"
+            ],
+            'knowsAbout': [
+              "IT Consulting",
+              "Software Development Consulting",
+              "Systems Architecture",
+              "Business Process Automation",
+              "ERP Systems",
+              "Healthcare Software Development",
+              "Fleet Management Systems",
+              "Booking & Reservation Platforms",
+              "React.js",
+              "Python",
+              "Django REST Framework",
+              "FastAPI",
+              "Database Design",
+              "Cloud Deployment"
+            ],
+            'serviceType': 'IT Consulting, Software Development Consulting, Systems Architecture, Business Process Automation, ERP Systems, and Custom Software Development'
           }
         ]
       };
