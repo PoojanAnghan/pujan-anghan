@@ -6,7 +6,6 @@ import CoverImageCarousel from '../components/CoverImageCarousel';
 import { getCoverImages } from '../utils/blogImages';
 import { Calendar, Tag, ArrowRight, Search, BookOpen, Loader2 } from 'lucide-react';
 import SubscribeForm from '../components/SubscribeForm';
-import AdBanner from '../components/AdBanner';
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
@@ -236,9 +235,6 @@ const BlogList = () => {
                     {/* Hover glow effect */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2"></div>
                   </Link>
-                  {index === 2 && (
-                    <AdBanner layout="card" slot="feed-ad-1" style={{ animationDelay: `${(index + 1) * 80}ms` }} />
-                  )}
                 </React.Fragment>
               ))}
             </div>
