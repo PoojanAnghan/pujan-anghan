@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load env
 function loadEnv() {
   const envPath = path.resolve(__dirname, '../.env');
   if (fs.existsSync(envPath)) {
@@ -38,10 +37,102 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const BASE_URL = 'https://pujan-anghan.vercel.app';
 
-async function generate() {
-  console.log('Generating static HTML files for blog posts...');
+const staticRoutes = [
+  {
+    path: 'services',
+    title: 'Custom IT Solutions & Software Development Services | Poojan Anghan',
+    description: 'Comprehensive custom software development, business process automation, enterprise ERP platforms, and IT architecture consulting by Poojan Anghan.'
+  },
+  {
+    path: 'services/it-consulting',
+    title: 'Enterprise IT Consulting & Systems Architecture | Poojan Anghan',
+    description: 'Strategic IT consulting, systems architecture design, database optimization, and cloud backend security audits for growing businesses and tech companies.'
+  },
+  {
+    path: 'services/web-development',
+    title: 'Custom Web Application & SaaS Development | Poojan Anghan',
+    description: 'Full-stack custom software and web application development services for businesses. React.js frontends, Python (Django, FastAPI) backends, and cloud deployment.'
+  },
+  {
+    path: 'about',
+    title: 'About Poojan Anghan | Full-Stack Software Engineer & IT Consultant',
+    description: 'Learn about Poojan Anghan\'s experience providing custom business software solutions, enterprise IT consulting, and full-stack web application development.'
+  },
+  {
+    path: 'projects',
+    title: 'Software Development Projects & Portfolio | Poojan Anghan',
+    description: 'Explore case studies and portfolio of custom enterprise ERP systems, healthcare platforms, booking engines, and web applications.'
+  },
+  {
+    path: 'experience',
+    title: 'Engineering Experience & Work History | Poojan Anghan',
+    description: 'Professional experience of Poojan Anghan in enterprise software engineering, IT consulting, and backend architecture.'
+  },
+  {
+    path: 'contact',
+    title: 'Contact Poojan Anghan | IT Solutions & Software Consulting Inquiry',
+    description: 'Get in touch with Poojan Anghan to discuss your business software project, IT consulting requirements, or custom web platform.'
+  },
+  {
+    path: 'quote',
+    title: 'Get a Quote | Custom Software & IT Consulting Project Estimate',
+    description: 'Request a custom software development quote or schedule an IT strategy session for your business.'
+  }
+];
 
-  // 1. Fetch posts
+async function generate() {
+  console.log('Generating static HTML files for core pages and blog posts...');
+
+  const distDir = path.resolve(__dirname, '../dist');
+  const templatePath = path.join(distDir, 'index.html');
+  if (!fs.existsSync(templatePath)) {
+    console.error('Error: dist/index.html not found. Run vite build first.');
+    process.exit(1);
+  }
+  const templateHtml = fs.readFileSync(templatePath, 'utf8');
+
+  // 1. Generate Static Core Pages
+  for (const route of staticRoutes) {
+    let html = templateHtml;
+    const pageUrl = `${BASE_URL}/${route.path}`;
+
+    html = html.replace(
+      /<title>.*?<\/title>/,
+      `<title>${route.title}</title>`
+    );
+
+    html = html.replace(
+      /<meta name="description" content=".*?" \/>/,
+      `<meta name="description" content="${route.description.replace(/"/g, '&quot;')}" />`
+    );
+
+    html = html.replace(
+      /<link rel="canonical" href=".*?" \/>/,
+      `<link rel="canonical" href="${pageUrl}" />`
+    );
+
+    html = html.replace(
+      /<meta property="og:title" content=".*?" \/>/,
+      `<meta property="og:title" content="${route.title.replace(/"/g, '&quot;')}" />`
+    );
+
+    html = html.replace(
+      /<meta property="og:description" content=".*?" \/>/,
+      `<meta property="og:description" content="${route.description.replace(/"/g, '&quot;')}" />`
+    );
+
+    html = html.replace(
+      /<meta property="og:url" content=".*?" \/>/,
+      `<meta property="og:url" content="${pageUrl}" />`
+    );
+
+    const routeDir = path.join(distDir, route.path);
+    fs.mkdirSync(routeDir, { recursive: true });
+    fs.writeFileSync(path.join(routeDir, 'index.html'), html, 'utf8');
+    console.log(`Generated static page: dist/${route.path}/index.html`);
+  }
+
+  // 2. Fetch & Generate Blog Posts
   const { data: posts, error } = await supabase
     .from('blog_posts')
     .select('slug, title, excerpt, published_at, cover_images, cover_image_url')
@@ -54,23 +145,12 @@ async function generate() {
 
   console.log(`Fetched ${posts.length} published blog posts.`);
 
-  // 2. Read built dist/index.html
-  const distDir = path.resolve(__dirname, '../dist');
-  const templatePath = path.join(distDir, 'index.html');
-  if (!fs.existsSync(templatePath)) {
-    console.error('Error: dist/index.html not found. Run vite build first.');
-    process.exit(1);
-  }
-  const templateHtml = fs.readFileSync(templatePath, 'utf8');
-
-  // 3. Generate static file for each post
   for (const post of posts) {
     const postSlug = post.slug;
     const postTitle = post.title;
     const postExcerpt = post.excerpt || '';
     const postUrl = `${BASE_URL}/blog/${postSlug}`;
     
-    // Cover image resolution
     let mainImage = `${BASE_URL}/og-image.png`;
     if (Array.isArray(post.cover_images) && post.cover_images.length > 0) {
       const validImages = post.cover_images.filter(Boolean);
@@ -83,63 +163,46 @@ async function generate() {
 
     let html = templateHtml;
 
-    // Head tag literal replacements
-    html = html.replaceAll(
-      '<title>Poojan Anghan — Software Engineer | React.js & Python Specialist</title>',
+    html = html.replace(
+      /<title>.*?<\/title>/,
       `<title>${postTitle} — Poojan Anghan Blog</title>`
     );
     
-    html = html.replaceAll(
-      '<meta name="description" content="Portfolio of Poojan Anghan, a freelance Software Engineer specializing in React.js, Python (Django, FastAPI, Flask), and REST API design. Shipped 10+ scalable remote projects." />',
+    html = html.replace(
+      /<meta name="description" content=".*?" \/>/,
       `<meta name="description" content="${postExcerpt.replace(/"/g, '&quot;')}" />`
     );
 
-    html = html.replaceAll(
-      '<link rel="canonical" href="https://pujan-anghan.vercel.app" />',
+    html = html.replace(
+      /<link rel="canonical" href=".*?" \/>/,
       `<link rel="canonical" href="${postUrl}" />`
     );
 
-    html = html.replaceAll(
-      '<meta property="og:type" content="website" />',
+    html = html.replace(
+      /<meta property="og:type" content=".*?" \/>/,
       `<meta property="og:type" content="article" />`
     );
 
-    html = html.replaceAll(
-      '<meta property="og:title" content="Poojan Anghan — Software Engineer" />',
-      `<meta property="og:title" content="${postTitle} — Poojan Anghan Blog" />`
+    html = html.replace(
+      /<meta property="og:title" content=".*?" \/>/,
+      `<meta property="og:title" content="${postTitle.replace(/"/g, '&quot;')} — Poojan Anghan Blog" />`
     );
 
-    html = html.replaceAll(
-      '<meta property="og:description" content="Freelance Software Engineer building scalable web applications with React.js and Python. Deliver secure, production-grade enterprise ERP, healthcare, and booking platforms." />',
+    html = html.replace(
+      /<meta property="og:description" content=".*?" \/>/,
       `<meta property="og:description" content="${postExcerpt.replace(/"/g, '&quot;')}" />`
     );
 
-    html = html.replaceAll(
-      '<meta property="og:url" content="https://pujan-anghan.vercel.app" />',
+    html = html.replace(
+      /<meta property="og:url" content=".*?" \/>/,
       `<meta property="og:url" content="${postUrl}" />`
     );
 
-    html = html.replaceAll(
-      '<meta property="og:image" content="https://pujan-anghan.vercel.app/og-image.png" />',
+    html = html.replace(
+      /<meta property="og:image" content=".*?" \/>/,
       `<meta property="og:image" content="${mainImage}" />`
     );
 
-    html = html.replaceAll(
-      '<meta name="twitter:title" content="Poojan Anghan — Software Engineer" />',
-      `<meta name="twitter:title" content="${postTitle} — Poojan Anghan Blog" />`
-    );
-
-    html = html.replaceAll(
-      '<meta name="twitter:description" content="Freelance Software Engineer building scalable web applications with React.js and Python." />',
-      `<meta name="twitter:description" content="${postExcerpt.replace(/"/g, '&quot;')}" />`
-    );
-
-    html = html.replaceAll(
-      '<meta name="twitter:image" content="https://pujan-anghan.vercel.app/og-image.png" />',
-      `<meta name="twitter:image" content="${mainImage}" />`
-    );
-
-    // Build and inject JSON-LD BlogPosting schema right before </head>
     const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -169,15 +232,13 @@ async function generate() {
     const jsonLdScript = `\n    <script id="json-ld-schema" type="application/ld+json">${JSON.stringify(jsonLd, null, 2)}</script>\n  `;
     html = html.replace('</head>', `${jsonLdScript}</head>`);
 
-    // Write generated index.html under dist/blog/[slug]/
     const postDir = path.join(distDir, 'blog', postSlug);
     fs.mkdirSync(postDir, { recursive: true });
-    const postFilePath = path.join(postDir, 'index.html');
-    fs.writeFileSync(postFilePath, html, 'utf8');
-    console.log(`Generated: dist/blog/${postSlug}/index.html`);
+    fs.writeFileSync(path.join(postDir, 'index.html'), html, 'utf8');
+    console.log(`Generated static post: dist/blog/${postSlug}/index.html`);
   }
 
-  console.log('All static blog pages generated successfully!');
+  console.log('All static pages and blog posts generated successfully!');
 }
 
 generate().catch(err => {

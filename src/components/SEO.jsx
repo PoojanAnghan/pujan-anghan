@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SEO = ({ title, description, keywords, noindex, image, type = 'website', publishedTime }) => {
+const SEO = ({ title, description, keywords, noindex, image, type = 'website', publishedTime, faq }) => {
   useEffect(() => {
     if (title) {
       document.title = title;
@@ -116,94 +116,110 @@ const SEO = ({ title, description, keywords, noindex, image, type = 'website', p
         }
       };
     } else {
+      const graphNodes = [
+        {
+          '@type': 'WebSite',
+          '@id': `${siteUrl}/#website`,
+          'name': title || 'Poojan Anghan',
+          'url': siteUrl,
+          'publisher': {
+            '@id': `${siteUrl}/#person`
+          }
+        },
+        {
+          '@type': 'Person',
+          '@id': `${siteUrl}/#person`,
+          'name': authorName,
+          'url': siteUrl,
+          'image': `${siteUrl}/profile.jpg`,
+          'sameAs': [
+            'https://github.com/PoojanAnghan',
+            'https://www.linkedin.com/in/poojan-a-447073340/',
+            'https://pujan-anghan.vercel.app'
+          ],
+          'jobTitle': 'Freelance Software Engineer',
+          'address': {
+            '@type': 'PostalAddress',
+            'addressLocality': 'Surat',
+            'addressRegion': 'Gujarat',
+            'addressCountry': 'IN'
+          },
+          'knowsAbout': [
+            "IT Consulting",
+            "Software Development Consulting",
+            "Systems Architecture",
+            "Business Process Automation",
+            "ERP Systems",
+            "Healthcare Software Development",
+            "Fleet Management Systems",
+            "Booking & Reservation Platforms",
+            "React.js",
+            "Python",
+            "Django REST Framework",
+            "FastAPI",
+            "Database Design",
+            "Cloud Deployment"
+          ]
+        },
+        {
+          '@type': 'ProfessionalService',
+          '@id': `${siteUrl}/#service`,
+          'name': authorName,
+          'url': siteUrl,
+          'image': `${siteUrl}/profile.jpg`,
+          'telephone': '+917043832747',
+          'priceRange': '$$',
+          'address': {
+            '@type': 'PostalAddress',
+            'addressLocality': 'Surat',
+            'addressRegion': 'Gujarat',
+            'addressCountry': 'IN'
+          },
+          'areaServed': [
+            "India",
+            "United States",
+            "United Kingdom",
+            "Canada",
+            "Australia",
+            "United Arab Emirates"
+          ],
+          'knowsAbout': [
+            "IT Consulting",
+            "Software Development Consulting",
+            "Systems Architecture",
+            "Business Process Automation",
+            "ERP Systems",
+            "Healthcare Software Development",
+            "Fleet Management Systems",
+            "Booking & Reservation Platforms",
+            "React.js",
+            "Python",
+            "Django REST Framework",
+            "FastAPI",
+            "Database Design",
+            "Cloud Deployment"
+          ],
+          'serviceType': 'IT Consulting, Software Development Consulting, Systems Architecture, Business Process Automation, ERP Systems, and Custom Software Development'
+        }
+      ];
+
+      if (Array.isArray(faq) && faq.length > 0) {
+        graphNodes.push({
+          '@type': 'FAQPage',
+          'mainEntity': faq.map(item => ({
+            '@type': 'Question',
+            'name': item.question,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': item.answer
+            }
+          }))
+        });
+      }
+
       schema = {
         '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'WebSite',
-            '@id': `${siteUrl}/#website`,
-            'name': title || 'Poojan Anghan',
-            'url': siteUrl,
-            'publisher': {
-              '@id': `${siteUrl}/#person`
-            }
-          },
-          {
-            '@type': 'Person',
-            '@id': `${siteUrl}/#person`,
-            'name': authorName,
-            'url': siteUrl,
-            'image': `${siteUrl}/profile.jpg`,
-            'sameAs': [
-              'https://github.com/PoojanAnghan',
-              'https://www.linkedin.com/in/poojan-a-447073340/',
-              'https://pujan-anghan.vercel.app'
-            ],
-            'jobTitle': 'Freelance Software Engineer',
-            'address': {
-              '@type': 'PostalAddress',
-              'addressLocality': 'Surat',
-              'addressRegion': 'Gujarat',
-              'addressCountry': 'IN'
-            },
-            'knowsAbout': [
-              "IT Consulting",
-              "Software Development Consulting",
-              "Systems Architecture",
-              "Business Process Automation",
-              "ERP Systems",
-              "Healthcare Software Development",
-              "Fleet Management Systems",
-              "Booking & Reservation Platforms",
-              "React.js",
-              "Python",
-              "Django REST Framework",
-              "FastAPI",
-              "Database Design",
-              "Cloud Deployment"
-            ]
-          },
-          {
-            '@type': 'ProfessionalService',
-            '@id': `${siteUrl}/#service`,
-            'name': authorName,
-            'url': siteUrl,
-            'image': `${siteUrl}/profile.jpg`,
-            'telephone': '+917043832747',
-            'priceRange': '$$',
-            'address': {
-              '@type': 'PostalAddress',
-              'addressLocality': 'Surat',
-              'addressRegion': 'Gujarat',
-              'addressCountry': 'IN'
-            },
-            'areaServed': [
-              "India",
-              "United States",
-              "United Kingdom",
-              "Canada",
-              "Australia",
-              "United Arab Emirates"
-            ],
-            'knowsAbout': [
-              "IT Consulting",
-              "Software Development Consulting",
-              "Systems Architecture",
-              "Business Process Automation",
-              "ERP Systems",
-              "Healthcare Software Development",
-              "Fleet Management Systems",
-              "Booking & Reservation Platforms",
-              "React.js",
-              "Python",
-              "Django REST Framework",
-              "FastAPI",
-              "Database Design",
-              "Cloud Deployment"
-            ],
-            'serviceType': 'IT Consulting, Software Development Consulting, Systems Architecture, Business Process Automation, ERP Systems, and Custom Software Development'
-          }
-        ]
+        '@graph': graphNodes
       };
     }
 

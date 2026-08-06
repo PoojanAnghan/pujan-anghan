@@ -3,22 +3,38 @@ import { Link } from 'react-router-dom';
 import { Code2, Terminal, Database, Cpu } from 'lucide-react';
 import SEO from '../components/SEO';
 
+const servicesFaqs = [
+  {
+    question: "What custom IT & business software services do you offer?",
+    answer: "I offer custom business web software development, enterprise ERP systems, SaaS MVP creation, backend API engineering with Python (Django, FastAPI), React.js frontend development, and IT systems architecture consulting."
+  },
+  {
+    question: "How do custom software solutions benefit growing businesses?",
+    answer: "Custom software automates manual business processes, eliminates monthly SaaS licensing overhead, unifies operational workflows, and scales without platform restrictions."
+  },
+  {
+    question: "What engagement models are available for software projects?",
+    answer: "I provide project-based development for fixed-scope deliverables, milestone-based MVP development, and ongoing dedicated remote IT consulting and software maintenance."
+  }
+];
+
 const Services = () => {
   return (
     <>
       <SEO
-        title="Freelance Software Engineering & Web Development Services | Poojan Anghan"
-        description="Professional freelance services for React frontend builds, Python backend API engineering, custom admin dashboards, and IT consulting by Poojan Anghan."
-        keywords="Freelance React Developer, Python Backend Services, Custom Web Development Surat, IT Consulting India"
+        title="Custom IT Solutions & Software Development Services | Poojan Anghan"
+        description="Comprehensive custom software development, business process automation, enterprise ERP platforms, and IT architecture consulting by Poojan Anghan."
+        keywords="Custom IT Solutions, Business Software Development, Enterprise ERP Systems, Software Consulting, SaaS MVP Development, Python React Specialist"
+        faq={servicesFaqs}
       />
       {/* Services Section */}
       <section id="services" className="py-24 bg-slate-950">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">Services</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">Freelance Services for Remote Product Teams</h2>
+            <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">Services & Solutions</span>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">Custom IT & Business Software Services</h1>
             <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
-              Delivery-focused engineering support for startups, agencies, and businesses that need consistent remote execution.
+              End-to-end engineering and technical advisory built to solve operational bottlenecks and launch market-ready software solutions.
             </p>
           </div>
 
@@ -185,6 +201,25 @@ const Services = () => {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section for Business Clients */}
+      <section className="py-20 bg-slate-950 border-t border-slate-900">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">FAQ</span>
+            <h2 className="text-3xl font-bold text-white mt-3 mb-3">Frequently Asked Questions</h2>
+            <p className="text-slate-400 text-sm">Common questions business owners and tech leaders ask about IT solutions.</p>
+          </div>
+          <div className="space-y-6">
+            {servicesFaqs.map((faq, idx) => (
+              <div key={idx} className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 shadow-md">
+                <h3 className="text-lg font-bold text-white mb-2">{faq.question}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

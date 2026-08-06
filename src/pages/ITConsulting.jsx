@@ -3,13 +3,25 @@ import { Terminal, Database, Shield, Zap, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
+const itFaqs = [
+  {
+    question: "When should a business hire an IT consulting partner?",
+    answer: "Hire an IT consultant when experiencing database slowness, technical debt, scaling bottlenecks, planning legacy system modernization, or needing independent architecture review before building new software."
+  },
+  {
+    question: "What backend technologies do you specialize in for IT consulting?",
+    answer: "I specialize in Python ecosystem backends (Django, Django REST Framework, FastAPI, Flask), PostgreSQL/MySQL database tuning, RESTful API design, Docker containerization, and cloud deployment."
+  }
+];
+
 const ITConsulting = () => {
   return (
     <>
       <SEO
-        title="IT Consulting & Systems Architecture Services | Poojan Anghan"
-        description="Professional freelance IT consulting and system architecture services. Specializing in Python backends, FastAPI/Django systems design, Postgres database tuning, and API security audits."
-        keywords="IT Consulting Surat, Software Architecture, Database Optimization, Django Developer, FastAPI Consultant"
+        title="Enterprise IT Consulting & Systems Architecture | Poojan Anghan"
+        description="Strategic IT consulting, systems architecture design, database optimization, and cloud backend security audits for growing businesses and tech companies."
+        keywords="Enterprise IT Consulting, Software Systems Architecture, Backend Engineering Consultant, Database Performance Audit, Python Django FastAPI Advisory"
+        faq={itFaqs}
       />
       <section className="py-20 bg-slate-950 text-white min-h-[calc(100vh-80px)] flex items-center">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -25,13 +37,13 @@ const ITConsulting = () => {
           {/* Hero header */}
           <div className="mb-12">
             <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">
-              Technical Advisory
+              IT Consulting & Solutions
             </span>
             <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-              IT Consulting & Technical Systems Architecture
+              Enterprise IT Consulting & Systems Architecture
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
-              I partner with product founders, CTOs, and technical managers to plan, structure, and optimize backend systems. My advisory focuses on building reliable foundations that sustain active business growth without technical debt.
+              Partnering with business leaders, CTOs, and product managers to design scalable backend architectures, optimize slow database engines, and secure enterprise software systems.
             </p>
           </div>
 
@@ -104,6 +116,24 @@ const ITConsulting = () => {
                 Book a Consultation
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-slate-950 border-t border-slate-900">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">FAQ</span>
+            <h2 className="text-3xl font-bold text-white mt-3 mb-3">IT Consulting FAQ</h2>
+          </div>
+          <div className="space-y-6">
+            {itFaqs.map((faq, idx) => (
+              <div key={idx} className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 shadow-md">
+                <h3 className="text-lg font-bold text-white mb-2">{faq.question}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

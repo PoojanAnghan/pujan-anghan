@@ -3,13 +3,25 @@ import { Code2, Cpu, Globe, Rocket, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
+const webFaqs = [
+  {
+    question: "What types of custom web software do you build for businesses?",
+    answer: "I build custom enterprise web software including administrative dashboards, SaaS MVPs, multi-tenant portals, custom ERP systems, booking engines, and robust REST API backend integrations."
+  },
+  {
+    question: "How long does a custom business software build take?",
+    answer: "A standard custom business application or SaaS MVP typically takes between 4 to 8 weeks depending on operational scope, schema complexity, and third-party API integrations."
+  }
+];
+
 const WebDevelopment = () => {
   return (
     <>
       <SEO
-        title="Full-Stack Web Application Development | Poojan Anghan"
-        description="Professional custom web development services. Responsive React.js frontends, Python (FastAPI/Django) backend architectures, dashboard portals, and third-party integrations."
-        keywords="Web Development Surat, React Developer India, Python Web Developer, Freelance Web Engineer"
+        title="Custom Web Application & SaaS Development | Poojan Anghan"
+        description="Full-stack custom software and web application development services for businesses. React.js frontends, Python (Django, FastAPI) backends, and cloud deployment."
+        keywords="Custom Web Application Development, SaaS MVP Development, Business Software Developer, React Python Full Stack, Enterprise Web Portals"
+        faq={webFaqs}
       />
       <section className="py-20 bg-slate-950 text-white min-h-[calc(100vh-80px)] flex items-center">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -25,13 +37,13 @@ const WebDevelopment = () => {
           {/* Hero header */}
           <div className="mb-12">
             <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">
-              Development Services
+              Software Solutions
             </span>
             <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-              Full-Stack Web Application Development
+              Custom Business Software & SaaS Development
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
-              I build production-grade web applications designed for performance, responsive interaction, and maintainable operations. From initial UI layouts to secure server endpoints, I handle the development lifecycle with precision.
+              Building production-ready enterprise web applications designed for high throughput, seamless user experiences, and automated business operations using React.js and Python.
             </p>
           </div>
 
@@ -104,6 +116,24 @@ const WebDevelopment = () => {
                 Start Your Project
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-slate-950 border-t border-slate-900">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <span className="text-emerald-400 font-bold text-xs tracking-wider uppercase px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-900/50">FAQ</span>
+            <h2 className="text-3xl font-bold text-white mt-3 mb-3">Custom Software & Web Development FAQ</h2>
+          </div>
+          <div className="space-y-6">
+            {webFaqs.map((faq, idx) => (
+              <div key={idx} className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 shadow-md">
+                <h3 className="text-lg font-bold text-white mb-2">{faq.question}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

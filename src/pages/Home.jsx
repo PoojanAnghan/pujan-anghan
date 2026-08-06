@@ -40,9 +40,9 @@ const Home = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title="Poojan Anghan — Software Engineer | React.js & Python Specialist"
-        description="Portfolio of Poojan Anghan, a freelance Software Engineer specializing in React.js, Python (Django, FastAPI, Flask), and REST API design. Shipped 10+ scalable remote projects."
-        keywords="Poojan Anghan, Software Engineer, React Developer, Python Developer, Django Developer, FastAPI Developer, Freelance Developer Surat"
+        title="IT & Custom Software Solutions | Business Automation & IT Consulting — Poojan Anghan"
+        description="Empowering businesses with custom software solutions, enterprise IT consulting, web applications, and automated workflows. Expert full-stack Python & React engineer."
+        keywords="Custom Business Software Development, Enterprise IT Solutions, Business Automation Consulting, ERP Development Services, Software Engineering Partner, React Developer, Python Developer, Django FastAPI Solutions"
       />
       {/* 1. Hero Section (Above the fold) */}
       <section id="home" className="relative min-h-[calc(100vh-80px)] flex items-center py-20 overflow-hidden">
@@ -59,18 +59,18 @@ const Home = () => {
               {/* Availability badge */}
               <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium backdrop-blur-sm w-fit">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                Available for freelance projects
+                Available for IT Consulting & Software Projects
               </div>
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-                Hi, I'm <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Poojan Anghan</span>
+                Custom IT & <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Software Solutions</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg sm:text-xl text-slate-450 mb-10 leading-relaxed max-w-2xl">
-                I enable companies to launch high-performance digital solutions spanning web and mobile, combining clean architecture, transparent updates, and on-time project execution.
+              <p className="text-lg sm:text-xl text-slate-350 mb-10 leading-relaxed max-w-2xl">
+                Hi, I'm <strong className="text-white">Poojan Anghan</strong>. I help growing businesses, startups, and product teams build scalable custom web platforms, automated ERP systems, and secure cloud API backends.
               </p>
 
               {/* CTA Buttons */}
