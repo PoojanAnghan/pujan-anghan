@@ -72,9 +72,9 @@ const BlogList = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title="Blog — Poojan Anghan | Insights on Software Engineering"
-        description="Read articles by Poojan Anghan on React.js, Python, Django, FastAPI, and modern web development best practices."
-        keywords="Poojan Anghan Blog, Software Engineering Blog, React Developer Blog, Python Django Blog"
+        title="IT & Software Engineering Blog | Business Solutions & Insights — Poojan Anghan"
+        description="Read articles and technical guides by Poojan Anghan on custom business software development, ERP systems, Python backends (Django, FastAPI), React.js, and IT consulting."
+        keywords="Software Engineering Blog, Custom ERP Development Articles, Business Software Solutions, Python Django Guides, React Architecture Insights, IT Consulting Blog"
       />
 
       {/* Hero Section */}

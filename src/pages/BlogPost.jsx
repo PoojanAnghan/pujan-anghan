@@ -203,10 +203,28 @@ const BlogPost = () => {
               prose-td:border-slate-800`;
 
             return (
-              <article
-                className={articleClass}
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
+              <>
+                <article
+                  className={articleClass}
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
+
+                {/* In-Article Conversion Callout */}
+                <div className="mt-16 p-8 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-emerald-950/40 rounded-2xl border border-emerald-500/20 shadow-2xl text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Need a Custom Software Solution for Your Business?</h3>
+                    <p className="text-slate-400 text-sm max-w-xl">
+                      Whether you need to build a custom ERP, launch a SaaS MVP, or optimize complex database backends, let's discuss your project goals.
+                    </p>
+                  </div>
+                  <Link
+                    to="/quote"
+                    className="px-6 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-lg shadow-emerald-900/30 transition-all whitespace-nowrap cursor-pointer"
+                  >
+                    Get a Free Estimate &rarr;
+                  </Link>
+                </div>
+              </>
             );
           })()}
         </div>
